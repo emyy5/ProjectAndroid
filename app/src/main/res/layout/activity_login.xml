@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/logo6">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B7000000" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/scroll"
+        android:fillViewport="true"
+        tools:layout_editor_absoluteX="١٤٨dp"
+        tools:layout_editor_absoluteY="-١٠٨dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+
+
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:fontFamily="sans-serif"
+                android:text="Login"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/createNewaccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Create new Account?"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/forgetpass" />
+
+            <TextView
+                android:id="@+id/forgetpass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="forget password?"
+
+
+                android:textColor="@color/white"
+                android:textSize="17dp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_login"
+                app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+            <EditText
+                android:id="@+id/inputEmailLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/input_bg"
+                android:ems="10"
+                android:hint="  Email"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <android.widget.Button
+                android:id="@+id/btn_login"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_click"
+                android:text="Login"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/inputLoginpass"
+                app:layout_constraintStart_toStartOf="@+id/inputLoginpass"
+                app:layout_constraintTop_toBottomOf="@+id/inputLoginpass" />
+
+            <EditText
+                android:id="@+id/inputLoginpass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/input_bg"
+                android:ems="10"
+
+                android:hint="  Password"
+                android:inputType="textPassword"
+                android:minHeight="50dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/inputEmailLogin"
+                app:layout_constraintStart_toStartOf="@+id/inputEmailLogin"
+                app:layout_constraintTop_toBottomOf="@+id/inputEmailLogin" />
+
+            <ImageView
+                android:id="@+id/img_google"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="150dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/createNewaccount"
+                app:srcCompat="@drawable/google_logo" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
