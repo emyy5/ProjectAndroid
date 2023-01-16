@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/logo6">
+    android:background="@drawable/neww2">
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B7000000" />
+        android:background="#48000000" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,7 +22,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
             <TextView
                 android:id="@+id/textView"
