@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/RandomCard"
+        android:layout_width="385dp"
+        android:layout_height="270dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/begie"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+       app:cardElevation="10dp"
+        app:cardCornerRadius="7dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="140dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/mealId"
+                android:layout_width="82dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="28dp"
+                android:text="TextView"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mealName" />
+
+            <TextView
+                android:id="@+id/mealName"
+                android:layout_width="99dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="68dp"
+                android:text="TextView"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/image"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="69dp"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/begie"
+                android:text="@string/favIcon"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/mealId"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/mealId"
+                app:layout_constraintTop_toBottomOf="@+id/mealId" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
