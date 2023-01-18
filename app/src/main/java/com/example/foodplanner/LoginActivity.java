@@ -22,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+
+
     TextView createNewaccount;
     EditText inputEmailLogin, inputLoginpass;
     Button btnlogin;
