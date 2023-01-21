@@ -1,5 +1,6 @@
 package com.example.foodplanner;
 
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -22,6 +23,7 @@ public class APIClient {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     .client(client)
                     .build();
 

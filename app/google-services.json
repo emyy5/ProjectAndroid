@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "569514836034-fibsdhhg0f3qqo2u1bsvspbvh6aoj05t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodplanner",
+            "certificate_hash": "7551baca3d8f413157446f7c3bc6d8ee5e5b51f9"
+          }
+        },
+        {
+          "client_id": "569514836034-qhupjl10r4eje964jlbld8u3eqd3jgjf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodplanner",
+            "certificate_hash": "0a143cb3f06ad5069b7d7fb69bffdd47c40e083a"
+          }
+        },
+        {
           "client_id": "569514836034-dh98ldb8s3hu4sl4193kouc7lbanfnun.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -38,6 +38,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         Meal meal = meals.get(position);
         holder.meal_id.setText(meal.getIdMeal().toString());
         holder.meal_name.setText(meal.getStrMeal());
+
         Glide.with(holder.meal_image.getContext()).load(meal.getStrMealThumb()).into(holder.meal_image);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,11 +55,21 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         return meals.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder   {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener   {
+
 
         public ImageView meal_image;
 
         public TextView  meal_name,  meal_id;
+
+        @Override
+        public void onClick(View view) {
+
+
+
+
+
+        }
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,7 +79,12 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
            meal_id= itemView.findViewById(R.id.mealId);
 
 
+
+
         }
+
+
+
 
     }
 }

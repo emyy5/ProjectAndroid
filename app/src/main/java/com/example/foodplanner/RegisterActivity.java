@@ -56,9 +56,9 @@ public class RegisterActivity extends AppCompatActivity {
         if (!password.equals(confirmPass)) {
             inputConfirmpass.setError("password not match");
         } else if (!email.matches(emailPattern)) {
-            inputRegisterEmail.setError("Enter context Email");
+            inputRegisterEmail.setError("Enter valid Email");
         } else if (password.isEmpty() || password.length() < 8) {
-            inputRegisterpass.setError("Enter proper password");
+            inputRegisterpass.setError("Enter valid password");
         } else {
 
             progressDialog.setMessage("Please wait while Registration...");

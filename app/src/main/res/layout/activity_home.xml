@@ -12,14 +12,12 @@
         android:id="@+id/RandomCard"
         android:layout_width="350dp"
         android:layout_height="330dp"
-        android:layout_marginStart="-85dp"
-        android:layout_marginTop="-270dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="50dp"
         android:backgroundTint="@color/begie"
         app:cardCornerRadius="15dp"
         app:cardElevation="11dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/dailyInspiration"
         app:layout_constraintTop_toBottomOf="@+id/dailyInspiration">
 
@@ -30,7 +28,8 @@
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="300dp"
-                android:layout_height="250dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="3dp"
                 app:layout_constraintBottom_toTopOf="@+id/mealId"
@@ -76,13 +75,14 @@
     <TextView
         android:id="@+id/dailyInspiration"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
         android:text="@string/daily"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,12 +90,12 @@
         android:id="@+id/meals"
         android:layout_width="409dp"
         android:layout_height="67dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
         android:text="@string/egyptianmeals"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/RandomCard"
         app:layout_constraintTop_toBottomOf="@+id/RandomCard" />
 
@@ -103,7 +103,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="405dp"
         android:layout_height="241dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

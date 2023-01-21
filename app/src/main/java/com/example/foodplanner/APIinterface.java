@@ -1,5 +1,6 @@
 package com.example.foodplanner;
 
+import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -7,11 +8,11 @@ import retrofit2.http.Query;
 public interface APIinterface {
 
     @GET("random.php")
-    Call<RootMeal> getRandomMeals();
+    Observable<RootMeal> getRandomMeals();
 
 
     @GET("filter.php")
-    Call<RootMeal> getFilteredMeals(@Query("a") String country);
+    Observable<RootMeal> getEgyptianMeals(@Query("a") String country);
 
 
 }

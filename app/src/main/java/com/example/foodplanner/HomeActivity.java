@@ -14,99 +14,91 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class HomeActivity extends AppCompatActivity {
+
     private static Retrofit retrofit;
     RecyclerView recyclerView;
     MealAdapter adapter;
 
 
     // ui for random meal
-    TextView txt;
-    TextView txt2;
-    ImageView image;
+
+    TextView randomMealName;
+    TextView randomMealId;
+    ImageView randomMealImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         recyclerView = findViewById(R.id.recyclerView);
-        txt = findViewById(R.id.mealName);
-        txt2 = findViewById(R.id.mealId);
-        image = findViewById(R.id.image);
+        randomMealName = findViewById(R.id.mealName);
+        randomMealId = findViewById(R.id.mealId);
+        randomMealImage = findViewById(R.id.image);
 
 
-        Retrofit apiClient= APIClient.getClient();
+        Retrofit apiClient = APIClient.getClient();
 
-        APIinterface apiInterface =  apiClient.create( APIinterface.class);
+        APIinterface apiInterface = apiClient.create(APIinterface.class);
 
-        Call<RootMeal> call = apiInterface.getRandomMeals();
+        Observable Randomobservable = apiInterface.getRandomMeals();
 
+        Observable<RootMeal> RandomMealObservablre = apiInterface.getRandomMeals();
+        RandomMealObservablre
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    String imgURl = response.getMeals().get(0).getStrMealThumb();
 
-        call.enqueue(new Callback<RootMeal>() {
-            @Override
-            public void onResponse(Call<RootMeal> call, Response<RootMeal> response) {
+                    Log.i("img", "onResponse:" + imgURl);
+                    Glide.with(randomMealImage.getContext()).load(imgURl).into(randomMealImage);
 
-                String imgURl = response.body().getMeals().get(0).getStrMealThumb();
-
-                Log.i("img", "onResponse:"+imgURl);
-                Glide.with(image.getContext()).load(imgURl).into(image);
-
-                txt.setText(response.body().getMeals().get(0).getIdMeal().toString());
-                txt2.setText(response.body().getMeals().get(0).getStrMeal());
-
-//////////////////////////////////////////////////////////////////////////////////
-
-            }
-
-            @Override
-            public void onFailure(Call<RootMeal> call, Throwable t) {
-
-            }
-        });
+                    randomMealName.setText(response.getMeals().get(0).getIdMeal().toString());
+                    randomMealId.setText(response.getMeals().get(0).getStrMeal());
 
 
-        Retrofit apiClient2= APIClient.getClient();
-
-        Call<RootMeal> call2= apiInterface.getFilteredMeals("Egyptian");
-
-        call2.enqueue( new Callback<RootMeal>() {
-            @Override
-            public void onResponse(Call<RootMeal> call2, Response<RootMeal> response) {
-
-                if(response.isSuccessful()){
-
-                    ArrayList<Meal> meals = response.body().getMeals();
+                }, error -> {
+                    error.getMessage();
+                });
 
 
-                    recyclerView.setHasFixedSize(true);
+        Observable EgyptianMeals = apiInterface.getEgyptianMeals("Egyptian");
+        Observable<RootMeal> EgyptianMealsObservable = apiInterface.getEgyptianMeals("Egyptian");
+        EgyptianMealsObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+
+                    ArrayList<Meal> meals = response.getMeals();
 
 
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        recyclerView.setHasFixedSize(true);
 
-                    recyclerView.setLayoutManager(linearLayoutManager);
 
-                    linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
 
-                    adapter = new MealAdapter(meals);
+                        recyclerView.setLayoutManager(linearLayoutManager);
 
-                    recyclerView.setAdapter(adapter);
+                        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+
+                        adapter = new MealAdapter(meals);
+
+                        recyclerView.setAdapter(adapter);
 
 
                 }
-            }
+                , error-> {
 
-            @Override
-            public void onFailure(Call<RootMeal> call, Throwable t) {
-
-
-            }
-        });
-
-
+                    error.getMessage();
+                        });
     }
 }

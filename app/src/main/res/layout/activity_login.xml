@@ -23,59 +23,58 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-
-
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_width="138dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="320dp"
+                android:layout_marginBottom="50dp"
                 android:fontFamily="sans-serif"
                 android:text="Login"
-                android:textColor="@color/white"
+                android:textColor="@color/brawn"
                 android:textSize="40sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/inputEmailLogin"
+                app:layout_constraintEnd_toEndOf="@+id/inputEmailLogin"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="@+id/inputEmailLogin"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
             <TextView
                 android:id="@+id/createNewaccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:padding="8dp"
                 android:text="Create new Account?"
                 android:textColor="@color/brawn"
                 android:textSize="17dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_login"
-                app:layout_constraintVertical_bias="0.112" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
             <EditText
                 android:id="@+id/inputEmailLogin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="215dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
-                android:paddingLeft="6dp"
-                android:textColor="@color/brawn"
-                android:paddingRight="6dp"
-                android:textSize="15dp"
                 android:background="@drawable/text_background"
                 android:ems="10"
                 android:hint="  Email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:textColor="@color/brawn"
 
                 android:textColorHint="@color/brawn"
+                android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -85,15 +84,16 @@
 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/button_background"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
                 android:text="Login"
                 android:textColor="@drawable/btn_text_color"
                 android:textSize="20dp"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/inputLoginpass"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/inputLoginpass"
                 app:layout_constraintTop_toBottomOf="@+id/inputLoginpass" />
 
@@ -101,19 +101,20 @@
                 android:id="@+id/inputLoginpass"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/text_background"
                 android:ems="10"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
                 android:hint="  Password"
-                android:textColor="@color/brawn"
                 android:inputType="textPassword"
                 android:minHeight="50dp"
-                android:textSize="15dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:textColor="@color/brawn"
 
                 android:textColorHint="@color/brawn"
+                android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="@+id/inputEmailLogin"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/inputEmailLogin"
                 app:layout_constraintTop_toBottomOf="@+id/inputEmailLogin" />
 
@@ -121,13 +122,11 @@
                 android:id="@+id/img_google"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginBottom="44dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createNewaccount"
-                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/google_logo" />
 
 

@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.example.foodplanner'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.foodplanner"
-        minSdk 21
-        targetSdk 32
+        minSdk 24
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -44,7 +44,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.4.0'
     implementation 'com.google.firebase:firebase-auth'
 
-    //implementation "io.reactivex.rxjava3:rxjava:3.x.y"
+
 
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
     implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
@@ -60,5 +60,21 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.airbnb.android:lottie:3.4.0'
+
+    // navigation dependency
+
+    implementation"androidx.navigation:navigation-fragment:2.5.3"
+    implementation"androidx.navigation:navigation-ui:2.5.3"
+
+
+    //  save args for Fragments Dependency
+
+//    implementation "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
+
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+
+    implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
+
 
 }
