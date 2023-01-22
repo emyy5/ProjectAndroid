@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 //import androidx.navigation.NavController;
 //import androidx.navigation.Navigation;
 //import androidx.navigation.ui.NavigationUI;
@@ -15,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-   // NavController navController;
+    NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
 //        ActionBar actionBar = getSupportActionBar();
 //        actionBar.setDisplayShowHomeEnabled(true);
 //        actionBar.setDisplayHomeAsUpEnabled(true);
-//
-//        navController = Navigation.findNavController(this,R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController);
+
+        navController = Navigation.findNavController(this,R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController);
 
     }
 

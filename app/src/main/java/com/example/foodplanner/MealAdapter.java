@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -62,14 +63,6 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
 
         public TextView  meal_name,  meal_id;
 
-        @Override
-        public void onClick(View view) {
-
-
-
-
-
-        }
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,8 +77,14 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
         }
 
 
+        @Override
+        public void onClick(View v) {
+            HomeDirections.ActionHomeToDetailsFragment action = HomeDirections.actionHomeToDetailsFragment();
+            action.setId(meals.get(this.getAdapterPosition()).getIdMeal());
+            Navigation.findNavController(v).navigate(action);
 
 
+        }
     }
 }
 

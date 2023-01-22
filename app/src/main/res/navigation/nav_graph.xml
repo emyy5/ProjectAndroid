@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScrren">
+    <fragment
+        android:id="@+id/splashScrren"
+        android:name="com.example.foodplanner.SplashScrren"
+        android:label="fragment_splash_scrren"
+        tools:layout="@layout/fragment_splash_scrren" >
+        <action
+            android:id="@+id/action_splashScrren_to_logIn"
+            app:destination="@id/logIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/logIn"
+        android:name="com.example.foodplanner.LogIn"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logIn_to_Home"
+            app:destination="@id/Home" />
+        <action
+            android:id="@+id/action_logIn_to_register"
+            app:destination="@id/register" />
+        <action
+            android:id="@+id/action_logIn_to_googleSignin"
+            app:destination="@id/googleSignin" />
+    </fragment>
+    <fragment
+        android:id="@+id/Home"
+        android:name="com.example.foodplanner.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_Home_to_details_Fragment"
+            app:destination="@id/details_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.foodplanner.Register"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_register_to_Home"
+            app:destination="@id/Home" />
+        <action
+            android:id="@+id/action_register_to_logIn"
+            app:destination="@id/logIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/googleSignin"
+        android:name="com.example.foodplanner.GoogleSignin"
+        android:label="activity_google_signin"
+        tools:layout="@layout/activity_google_signin" />
+    <fragment
+        android:id="@+id/details_Fragment"
+        android:name="com.example.foodplanner.Details_Fragment"
+        android:label="fragment_details_"
+        tools:layout="@layout/fragment_details_" >
+        <argument
+            android:name="id"
+            app:argType="long"
+            android:defaultValue="0L" />
+    </fragment>
+</navigation>

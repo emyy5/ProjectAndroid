@@ -5,7 +5,15 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -17,17 +25,23 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class GoogleSignin extends LoginActivity {
+import java.util.concurrent.Executor;
+
+public class GoogleSignin extends LogIn {
     private static final int RC_SIGN_IN = 101;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     GoogleSignInClient googleSignInClient;
     ProgressDialog progressDialog;
+    View view;
+
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        progressDialog = new ProgressDialog(this);
+
+    progressDialog = new ProgressDialog(requireContext());
         progressDialog.setMessage("Google sign in...");
         progressDialog.show();
 
@@ -38,9 +52,15 @@ public class GoogleSignin extends LoginActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+        googleSignInClient = GoogleSignIn.getClient(requireContext(), googleSignInOptions);
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        this.view = view;
     }
 
     @Override
@@ -54,9 +74,8 @@ public class GoogleSignin extends LoginActivity {
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 //finish();
-                Toast.makeText(this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
-                finish();
 
             }
         }
@@ -65,7 +84,7 @@ public class GoogleSignin extends LoginActivity {
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, task -> {
+                .addOnCompleteListener((Executor) this, task -> {
                     if (task.isSuccessful()) {
                         // Log.d(TAG, "signInWithCredential: success");
                         progressDialog.dismiss();
@@ -74,18 +93,19 @@ public class GoogleSignin extends LoginActivity {
                     } else {
                         //finish();
                         progressDialog.dismiss();
-                        Toast.makeText(GoogleSignin.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "" + task.getException(), Toast.LENGTH_SHORT).show();
                         updateUI(null);
-                        finish();
+
 
                     }
                 });
     }
 
     private void updateUI(FirebaseUser user) {
-        Intent intent = new Intent(GoogleSignin.this, HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+//        Intent intent = new Intent(GoogleSignin.this, HomeActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(intent);
+        Navigation.findNavController(view).navigate(R.id.action_logIn_to_Home);
     }
 
 }
