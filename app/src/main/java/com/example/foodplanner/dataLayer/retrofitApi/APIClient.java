@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.dataLayer.retrofitApi;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import okhttp3.OkHttpClient;

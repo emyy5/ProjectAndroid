@@ -9,7 +9,7 @@
     android:paddingTop="0dp"
     android:paddingRight="0dp"
     android:paddingBottom="0dp"
-    tools:context=".Register">
+    tools:context=".view.Register">
 
     <View
         android:id="@+id/view2"

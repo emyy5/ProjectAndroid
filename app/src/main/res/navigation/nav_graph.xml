@@ -6,7 +6,7 @@
     app:startDestination="@id/Home">
     <fragment
         android:id="@+id/splashScrren"
-        android:name="com.example.foodplanner.SplashScreen"
+        android:name="com.example.foodplanner.view.SplashScreen"
         android:label="fragment_splash_scrren"
         tools:layout="@layout/fragment_splash_scrren" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/logIn"
-        android:name="com.example.foodplanner.LogIn"
+        android:name="com.example.foodplanner.view.LogIn"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" >
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/Home"
-        android:name="com.example.foodplanner.Home"
+        android:name="com.example.foodplanner.view.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/register"
-        android:name="com.example.foodplanner.Register"
+        android:name="com.example.foodplanner.view.Register"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -51,12 +51,12 @@
     </fragment>
     <fragment
         android:id="@+id/googleSignin"
-        android:name="com.example.foodplanner.GoogleSignin"
+        android:name="com.example.foodplanner.view.GoogleSignin"
         android:label="activity_google_signin"
         tools:layout="@layout/activity_google_signin" />
     <fragment
         android:id="@+id/details_Fragment"
-        android:name="com.example.foodplanner.Details_Fragment"
+        android:name="com.example.foodplanner.view.Details_Fragment"
         android:label="fragment_details_"
         tools:layout="@layout/fragment_details_" >
         <argument

@@ -1,13 +1,17 @@
-package com.example.foodplanner;
+package com.example.foodplanner.dataLayer.room;
 /*
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;*/
 
-//@Entity(tableName = "singleMeal")
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "singleMeal")
  public class RandomMeal {
-   // @ColumnInfo(name = "idMeal")
-   // @PrimaryKey
+    @ColumnInfo(name = "idMeal")
+   @PrimaryKey
    private Long idMeal;
     //@ColumnInfo(name = "strMeal")
     private String strMeal;
@@ -15,17 +19,7 @@ import androidx.room.PrimaryKey;*/
         private String strMealThumb;
 
 
-    public RandomMeal(String strMeal,
-                      String strMealThumb,
-                      Long idMeal) {
 
-        this.strMeal = strMeal;
-        this.strMealThumb = strMealThumb;
-        this.idMeal = idMeal;
-    }
-
-    public RandomMeal() {
-    }
         public String getStrMeal() {
             return strMeal;
         }

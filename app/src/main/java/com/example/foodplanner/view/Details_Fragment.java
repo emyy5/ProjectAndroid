@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.view;
 
 import android.os.Bundle;
 
@@ -12,6 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
+import com.example.foodplanner.dataLayer.retrofitApi.APIinterface;
+import com.example.foodplanner.dataLayer.pojes.DetailMeal;
+import com.example.foodplanner.dataLayer.pojes.DetailRoot;
+import com.example.foodplanner.R;
 
 import java.util.ArrayList;
 
@@ -64,26 +70,18 @@ public class Details_Fragment extends Fragment {
         detailName.setText(id.toString());
         getMealsDetails();
 
-
-
-
     }
     public void getMealsDetails() {
-
         Retrofit apiClient = APIClient.getClient();
         APIinterface apiInterface = apiClient.create(APIinterface.class);
-
         Observable<DetailRoot> MealDetail = apiInterface.getByID(id);
-
         Observable<DetailRoot> MealDetailObservable = apiInterface.getByID(id);
         MealDetail
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
                     details = (ArrayList<DetailMeal>) response.getMeals();
-                   String name = details.get(0).strMeal;
-                   detailName.setText(name);
-                    String name = details.get(0).strMeal;
+                    String name = details.get(0).getStrMeal();
                     detailName.setText(name);
 
 

@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.view;
 
 import android.os.Bundle;
 
@@ -16,6 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
+import com.example.foodplanner.dataLayer.retrofitApi.APIinterface;
+import com.example.foodplanner.R;
+import com.example.foodplanner.dataLayer.room.RandomMeal;
+import com.example.foodplanner.dataLayer.pojes.RandomRoot;
 
 import java.util.ArrayList;
 
@@ -30,7 +35,6 @@ public class Home extends Fragment {
     private static Retrofit retrofit;
     RecyclerView recyclerView;
     RandomAdapter adapter;
-
 
     // ui for random meal
 

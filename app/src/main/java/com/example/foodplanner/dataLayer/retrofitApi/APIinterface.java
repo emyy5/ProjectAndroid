@@ -1,4 +1,7 @@
-package com.example.foodplanner;
+package com.example.foodplanner.dataLayer.retrofitApi;
+
+import com.example.foodplanner.dataLayer.pojes.DetailRoot;
+import com.example.foodplanner.dataLayer.pojes.RandomRoot;
 
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;

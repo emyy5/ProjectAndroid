@@ -1,5 +1,5 @@
-package com.example.foodplanner;
-
+package com.example.foodplanner.dataLayer.pojes;
+//Model -- POJO
 public class DetailMeal {
     public String idMeal;
     public String strMeal;

@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.view;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import androidx.navigation.ui.NavigationUI;
 //import androidx.navigation.Navigation;
 //import androidx.navigation.ui.NavigationUI;
 
+import com.example.foodplanner.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {

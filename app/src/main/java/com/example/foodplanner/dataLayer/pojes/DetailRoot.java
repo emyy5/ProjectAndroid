@@ -1,4 +1,6 @@
-package com.example.foodplanner;
+package com.example.foodplanner.dataLayer.pojes;
+
+import com.example.foodplanner.dataLayer.pojes.DetailMeal;
 
 import java.util.ArrayList;
 

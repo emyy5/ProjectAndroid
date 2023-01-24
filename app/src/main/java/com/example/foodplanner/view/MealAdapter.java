@@ -1,24 +1,27 @@
-package com.example.foodplanner;
+package com.example.foodplanner.view;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.R;
+import com.example.foodplanner.dataLayer.room.RandomMeal;
+
 
 import java.util.ArrayList;
 
-public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHolder>  {
+public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder>  {
 
     private ArrayList<RandomMeal> meals;
 
-    public RandomAdapter(ArrayList<RandomMeal> meals) {
+    public MealAdapter(ArrayList<RandomMeal> meals) {
         this.meals = meals;
     }
 
@@ -38,9 +41,14 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
         RandomMeal meal = meals.get(position);
         holder.meal_id.setText(meal.getIdMeal().toString());
         holder.meal_name.setText(meal.getStrMeal());
-
         Glide.with(holder.meal_image.getContext()).load(meal.getStrMealThumb()).into(holder.meal_image);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(),"Item clicked",Toast.LENGTH_LONG);
 
+            }
+        });
 
     }
 
@@ -49,13 +57,11 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
         return meals.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener   {
-
+    public class MyViewHolder extends RecyclerView.ViewHolder   {
 
         public ImageView meal_image;
 
         public TextView  meal_name,  meal_id;
-
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,23 +70,9 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
            meal_name=itemView.findViewById(R.id.mealName);
            meal_id= itemView.findViewById(R.id.mealId);
 
-           itemView.setOnClickListener(this);
-
-
 
         }
 
-
-        @Override
-        public void onClick(View v) {
-            HomeDirections.ActionHomeToDetailsFragment action = HomeDirections.actionHomeToDetailsFragment();
-            action.setId(meals.get(this.getAdapterPosition()).getIdMeal());
-            Navigation.findNavController(v).navigate(action);
-
-
-
-
-        }
     }
 }
 
