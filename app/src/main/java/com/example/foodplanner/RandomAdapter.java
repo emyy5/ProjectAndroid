@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -15,11 +14,11 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder>  {
+public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHolder>  {
 
-    private ArrayList<Meal> meals;
+    private ArrayList<RandomMeal> meals;
 
-    public MealAdapter(ArrayList<Meal> meals) {
+    public RandomAdapter(ArrayList<RandomMeal> meals) {
         this.meals = meals;
     }
 
@@ -36,18 +35,12 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
 
-        Meal meal = meals.get(position);
+        RandomMeal meal = meals.get(position);
         holder.meal_id.setText(meal.getIdMeal().toString());
         holder.meal_name.setText(meal.getStrMeal());
 
         Glide.with(holder.meal_image.getContext()).load(meal.getStrMealThumb()).into(holder.meal_image);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(),"Item clicked",Toast.LENGTH_LONG);
 
-            }
-        });
 
     }
 
@@ -71,6 +64,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
            meal_name=itemView.findViewById(R.id.mealName);
            meal_id= itemView.findViewById(R.id.mealId);
 
+           itemView.setOnClickListener(this);
 
 
 
@@ -82,6 +76,8 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MyViewHolder> 
             HomeDirections.ActionHomeToDetailsFragment action = HomeDirections.actionHomeToDetailsFragment();
             action.setId(meals.get(this.getAdapterPosition()).getIdMeal());
             Navigation.findNavController(v).navigate(action);
+
+
 
 
         }

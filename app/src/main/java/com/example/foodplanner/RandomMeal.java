@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;*/
 
 //@Entity(tableName = "singleMeal")
- public class Meal {
+ public class RandomMeal {
    // @ColumnInfo(name = "idMeal")
    // @PrimaryKey
    private Long idMeal;
@@ -15,16 +15,16 @@ import androidx.room.PrimaryKey;*/
         private String strMealThumb;
 
 
-    public Meal(String strMeal,
-                String strMealThumb,
-                Long idMeal) {
+    public RandomMeal(String strMeal,
+                      String strMealThumb,
+                      Long idMeal) {
 
         this.strMeal = strMeal;
         this.strMealThumb = strMealThumb;
         this.idMeal = idMeal;
     }
 
-    public Meal() {
+    public RandomMeal() {
     }
         public String getStrMeal() {
             return strMeal;

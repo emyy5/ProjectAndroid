@@ -29,7 +29,7 @@ public class Home extends Fragment {
 
     private static Retrofit retrofit;
     RecyclerView recyclerView;
-    MealAdapter adapter;
+    RandomAdapter adapter;
 
 
     // ui for random meal
@@ -72,7 +72,7 @@ public class Home extends Fragment {
 
         Observable Randomobservable = apiInterface.getRandomMeals();
 
-        Observable<RootMeal> RandomMealObservablre = apiInterface.getRandomMeals();
+        Observable<RandomRoot> RandomMealObservablre = apiInterface.getRandomMeals();
         RandomMealObservablre
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -92,13 +92,13 @@ public class Home extends Fragment {
 
 
         Observable EgyptianMeals = apiInterface.getEgyptianMeals("Egyptian");
-        Observable<RootMeal> EgyptianMealsObservable = apiInterface.getEgyptianMeals("Egyptian");
+        Observable<RandomRoot> EgyptianMealsObservable = apiInterface.getEgyptianMeals("Egyptian");
         EgyptianMealsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
 
-                            ArrayList<Meal> meals = response.getMeals();
+                            ArrayList<RandomMeal> meals = response.getMeals();
 
 
                             recyclerView.setHasFixedSize(true);
@@ -110,7 +110,7 @@ public class Home extends Fragment {
 
                             linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
 
-                            adapter = new MealAdapter(meals);
+                            adapter = new RandomAdapter(meals);
 
                             recyclerView.setAdapter(adapter);
 

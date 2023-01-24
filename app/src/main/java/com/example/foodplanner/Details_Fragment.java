@@ -9,12 +9,28 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
+
+import java.util.ArrayList;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class Details_Fragment extends Fragment {
 
     Long id ;
-    TextView idLabel;
+    ArrayList<DetailMeal> details;
+
+    // ui
+    VideoView mealVideo;
+    ImageView detailImage;
+    TextView detailName;
+    TextView detailArea;
+    TextView detailInstructions ;
 
 
 
@@ -35,7 +51,46 @@ public class Details_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         id = Details_FragmentArgs.fromBundle(getArguments()).getId();
-        idLabel = view.findViewById(R.id.textView2);
-        idLabel.setText(id.toString());
+
+
+        detailName = view.findViewById(R.id.detailName);
+        detailArea = view.findViewById(R.id.detailArea);
+        detailImage= view.findViewById(R.id.detailImage);
+        detailInstructions=view.findViewById(R.id.detailInstruction);
+        mealVideo = view.findViewById(R.id.mealVideo);
+
+
+
+        detailName.setText(id.toString());
+        getMealsDetails();
+
+
+
+
     }
+    public void getMealsDetails() {
+
+        Retrofit apiClient = APIClient.getClient();
+        APIinterface apiInterface = apiClient.create(APIinterface.class);
+
+        Observable<DetailRoot> MealDetail = apiInterface.getByID(id);
+
+        Observable<DetailRoot> MealDetailObservable = apiInterface.getByID(id);
+        MealDetail
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    details = (ArrayList<DetailMeal>) response.getMeals();
+                   String name = details.get(0).strMeal;
+                   detailName.setText(name);
+                    String name = details.get(0).strMeal;
+                    detailName.setText(name);
+
+
+                }, error -> {
+
+
+       });
+}
+
 }

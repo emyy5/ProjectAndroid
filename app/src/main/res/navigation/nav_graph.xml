@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScrren">
+    app:startDestination="@id/Home">
     <fragment
         android:id="@+id/splashScrren"
-        android:name="com.example.foodplanner.SplashScrren"
+        android:name="com.example.foodplanner.SplashScreen"
         android:label="fragment_splash_scrren"
         tools:layout="@layout/fragment_splash_scrren" >
         <action
