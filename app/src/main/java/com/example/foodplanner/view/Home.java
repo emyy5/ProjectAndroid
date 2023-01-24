@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.dataLayer.Repository;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
 import com.example.foodplanner.dataLayer.retrofitApi.APIinterface;
 import com.example.foodplanner.R;
@@ -49,6 +50,7 @@ public class Home extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
     }
@@ -63,7 +65,6 @@ public class Home extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         recyclerView = view.findViewById(R.id.recyclerView);
         randomMealName = view.findViewById(R.id.mealName);
         randomMealId = view.findViewById(R.id.mealId);
@@ -114,7 +115,7 @@ public class Home extends Fragment {
 
                             linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
 
-                            adapter = new RandomAdapter(meals);
+                            adapter = new RandomAdapter(meals,getContext());
 
                             recyclerView.setAdapter(adapter);
 

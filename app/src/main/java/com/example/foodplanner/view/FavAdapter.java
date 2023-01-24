@@ -19,6 +19,11 @@ import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 import com.example.foodplanner.dataLayer.room.RandomMeal;
 import com.example.foodplanner.dataLayer.Repository;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import java.util.List;
@@ -34,6 +39,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     public FavAdapter(Context context, List<RandomMeal> favourite) {
         this.context = context;
         this.favourite = favourite;
+        repository = new Repository(context);
         notifyDataSetChanged();
     }
 
@@ -43,6 +49,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     }
 
     public void setProducts(List<RandomMeal> products) {
+
         this.products = products;
     }
 
@@ -69,18 +76,25 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
                 .into(holder.img);
         Log.i(TAG, "onBindViewHolder: for photo" + products.get(position).getStrMealThumb());
 
-        repository = new Repository(context);
+
         holder.constraintLayout.setOnClickListener(new View. OnClickListener () {
             @Override
             public void onClick(View view) {
                 Toast.makeText (context, products.get(position).getStrMeal(), Toast.LENGTH_SHORT) .show();
             }
         });
-        holder.addToFave.setOnClickListener(new View.OnClickListener() {
+        holder.deleteFaV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "onClick: product" + product);
                 repository.delete(product);
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                db
+                        .collection("database")
+                        .document(firebaseAuth.getCurrentUser().getEmail())
+                        .collection("Favorite")
+                        .document(product.getIdMeal())
+                        .delete();
             }
         });
 
@@ -102,7 +116,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
         public View layout;
         public ImageView img;
         public ConstraintLayout constraintLayout;
-        Button addToFave;
+        Button deleteFaV;
 
         public ViewHolder(View v) {
             super(v);
@@ -111,7 +125,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
             priceTxtView = v.findViewById(R.id.price1);
             img = v.findViewById(R.id.productImg1);
             constraintLayout = v.findViewById(R.id.raw);
-            addToFave = v.findViewById(R.id.favRowbtn1);
+            deleteFaV = v.findViewById(R.id.favRowbtn1);
         }
     }
 }

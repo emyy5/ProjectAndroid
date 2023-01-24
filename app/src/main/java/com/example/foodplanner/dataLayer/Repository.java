@@ -7,6 +7,12 @@ import android.widget.Toast;
 import com.example.foodplanner.dataLayer.room.FavproductDao;
 import com.example.foodplanner.dataLayer.room.MealDatabase;
 import com.example.foodplanner.dataLayer.room.RandomMeal;
+import com.example.foodplanner.view.MainActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
@@ -22,12 +28,16 @@ public class Repository {
     private Context context;
     private FavproductDao favproductDao;
     private Single<List<RandomMeal>> storeProduct;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore fdb;
 
     public Repository(Context context) {
         this.context = context;
         MealDatabase db = MealDatabase.getInstance(context.getApplicationContext());
         favproductDao = db.favProductDao();
         storeProduct = favproductDao.getAllProducts();
+        firebaseAuth = FirebaseAuth.getInstance();
+        fdb  = FirebaseFirestore.getInstance();
     }
 
     public Single<List<RandomMeal>> getStoreProduct() {
@@ -69,6 +79,13 @@ public class Repository {
 
                     @Override
                     public void onComplete() {
+                        fdb
+                                .collection("database")
+                                .document(firebaseAuth.getCurrentUser().getEmail())
+                                .collection("Favorite")
+                                .document(product.getIdMeal())
+                                .delete();
+
                         Toast.makeText(context, "Data Removed", Toast.LENGTH_SHORT).show();
                     }
 

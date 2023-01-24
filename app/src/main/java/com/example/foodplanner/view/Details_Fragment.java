@@ -28,7 +28,7 @@ import retrofit2.Retrofit;
 
 public class Details_Fragment extends Fragment {
 
-    Long id ;
+    String id ;
     ArrayList<DetailMeal> details;
 
     // ui

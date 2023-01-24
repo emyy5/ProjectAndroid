@@ -61,7 +61,6 @@
         tools:layout="@layout/fragment_details_" >
         <argument
             android:name="id"
-            app:argType="long"
-            android:defaultValue="0L" />
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -17,6 +17,6 @@ public interface APIinterface {
     Observable<RandomRoot> getEgyptianMeals(@Query("a") String country);
 
     @GET("lookup.php")
-    Observable<DetailRoot> getByID(@Query("i")Long id);
+    Observable<DetailRoot> getByID(@Query("i")String id);
 
 }
