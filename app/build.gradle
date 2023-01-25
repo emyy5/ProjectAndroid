@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs'
-
 }
 
 android {
@@ -77,7 +76,7 @@ dependencies {
 
     //  save args for Fragments Dependency
 
-//    implementation "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
+    implementation "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
 
     implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'

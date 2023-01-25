@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,7 +37,10 @@ public class Home extends Fragment {
     private static Retrofit retrofit;
     RecyclerView recyclerView;
     RandomAdapter adapter;
+    Button fav_btn;
 
+    Boolean flag = false;
+    HomeArgs args ;
     // ui for random meal
 
     TextView randomMealName;
@@ -69,7 +73,20 @@ public class Home extends Fragment {
         randomMealName = view.findViewById(R.id.mealName);
         randomMealId = view.findViewById(R.id.mealId);
         randomMealImage = view.findViewById(R.id.image);
+        fav_btn= view.findViewById(R.id.favbtn);
 
+        flag = args.getFlagGuest();
+
+        if (flag){
+            recyclerView.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+        fav_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         Retrofit apiClient = APIClient.getClient();
 

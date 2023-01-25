@@ -36,6 +36,10 @@
         <action
             android:id="@+id/action_Home_to_details_Fragment"
             app:destination="@id/details_Fragment" />
+        <argument
+            android:name="flagGuest"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/register"

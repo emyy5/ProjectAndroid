@@ -26,17 +26,8 @@ public class SplashScreen extends Fragment {
     }
 
 
-
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_splash_scrren, container, false);
     }
@@ -50,7 +41,7 @@ public class SplashScreen extends Fragment {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(3000);
                     Navigation.findNavController(view).navigate(R.id.action_splashScrren_to_logIn);
 
                 } catch (InterruptedException e) {

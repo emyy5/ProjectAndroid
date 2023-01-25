@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LogIn extends Fragment {
 
-    TextView createNewaccount;
+    TextView createNewaccount, asGuestTv;
     EditText inputEmailLogin, inputLoginpass;
     Button btnlogin;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -64,6 +65,7 @@ public class LogIn extends Fragment {
 
         btnlogin = view.findViewById(R.id.btn_login);
 
+        asGuestTv = view.findViewById(R.id.asGuestTv);
         inputEmailLogin = view.findViewById(R.id.inputEmailLogin);
         inputLoginpass = view.findViewById(R.id.inputLoginpass);
         img_google=view.findViewById(R.id.img_google);
@@ -72,6 +74,16 @@ public class LogIn extends Fragment {
         firebaseUser = firebaseAuth.getCurrentUser();
         createNewaccount=view.findViewById(R.id.createNewaccount);
         this.view = view ;
+
+
+        asGuestTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+//                navController.navigate(R.id.action_logIn_to_Home, true);
+                Navigation.findNavController(view).navigate(LogInDirections.actionLogInToHome());
+            }
+        });
 
 
         createNewaccount.setOnClickListener(new View.OnClickListener() {

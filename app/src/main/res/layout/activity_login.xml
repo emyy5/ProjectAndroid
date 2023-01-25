@@ -127,8 +127,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/createNewaccount"
                 app:srcCompat="@drawable/google_logo" />
 
+
+            <TextView
+                android:id="@+id/asGuestTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="As Guest"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/createNewaccount"
+                app:layout_constraintStart_toStartOf="@+id/createNewaccount"
+                app:layout_constraintTop_toBottomOf="@+id/img_google" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
