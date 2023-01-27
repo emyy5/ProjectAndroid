@@ -22,6 +22,7 @@ import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
@@ -29,7 +30,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
 
 
     private Context context;
-    private List<RandomMeal> products;
+    private List<RandomMeal> products = new ArrayList<>();
     private static final String TAG = "MyAdapter";
     private Repository repository;
     public FavAdapter(Context context, List<RandomMeal> favourite) {
@@ -83,6 +84,10 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 repository.delete(product);
+
+                notifyItemRemoved(position);
+                products.remove(position);
+
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                 if (firebaseAuth.getCurrentUser()!=null) {

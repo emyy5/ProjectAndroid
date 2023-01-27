@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
     RandomAdapter adapter;
-    Button fav_btn;
+
 
     // ui for random meal
 
@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment {
         randomMealName = view.findViewById(R.id.mealName);
         randomMealId = view.findViewById(R.id.mealId);
         randomMealImage = view.findViewById(R.id.image);
-        fav_btn= view.findViewById(R.id.fav_btn);
+
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
@@ -88,20 +88,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        fav_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Navigation.findNavController(view).navigate(R.id.favmeal);
-
-            }
-        });
 
         Retrofit apiClient = APIClient.getClient();
 
         APIinterface apiInterface = apiClient.create(APIinterface.class);
-
-        Observable Randomobservable = apiInterface.getRandomMeals();
 
         Observable<RandomRoot> RandomMealObservablre = apiInterface.getRandomMeals();
         RandomMealObservablre
@@ -122,7 +113,6 @@ public class HomeFragment extends Fragment {
                 });
 
 
-        Observable EgyptianMeals = apiInterface.getEgyptianMeals("Egyptian");
         Observable<RandomRoot> EgyptianMealsObservable = apiInterface.getEgyptianMeals("Egyptian");
         EgyptianMealsObservable
                 .subscribeOn(Schedulers.io())
@@ -134,12 +124,6 @@ public class HomeFragment extends Fragment {
 
                             recyclerView.setHasFixedSize(true);
 
-
-                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
-
-                            recyclerView.setLayoutManager(linearLayoutManager);
-
-                            linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
 
                             adapter = new RandomAdapter(meals,getContext());
 
