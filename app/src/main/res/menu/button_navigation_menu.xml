@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/favmeal" android:title="Favorite" android:icon="@drawable/ic_baseline_bookmark_24"/>
+    <item android:title="Week Plane"  android:id="@+id/weekplan" android:icon="@drawable/ic_baseline_calendar_today_24"/>
+    <item android:title="Search" android:icon="@drawable/ic_baseline_search_24"/>
+    <item android:title="Home" android:id="@+id/Home" android:icon="@drawable/ic_baseline_home_24"/>
+</menu>

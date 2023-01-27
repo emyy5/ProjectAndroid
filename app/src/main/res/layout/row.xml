@@ -39,7 +39,7 @@
                 android:id="@+id/mealId"
                 android:layout_width="82dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="28dp"
                 android:text="TextView"
                 android:textSize="18dp"
@@ -62,14 +62,35 @@
             <Button
                 android:id="@+id/favbtn"
                 android:layout_width="69dp"
-                android:layout_height="35dp"
+                android:layout_height="48dp"
                 android:backgroundTint="@color/begie"
                 android:text="@string/favIcon"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/mealId"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/mealId"
                 app:layout_constraintTop_toBottomOf="@+id/mealId" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints">
+
+                <AutoCompleteTextView
+                    android:id="@+id/auto_compelete_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"></AutoCompleteTextView>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

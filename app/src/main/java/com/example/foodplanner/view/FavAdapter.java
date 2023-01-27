@@ -17,14 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.dataLayer.room.RandomMeal;
 import com.example.foodplanner.dataLayer.Repository;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
+import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 
 import java.util.List;
 
@@ -89,12 +85,14 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
                 repository.delete(product);
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                db
-                        .collection("database")
-                        .document(firebaseAuth.getCurrentUser().getEmail())
-                        .collection("Favorite")
-                        .document(product.getIdMeal())
-                        .delete();
+                if (firebaseAuth.getCurrentUser()!=null) {
+                    db
+                            .collection("database")
+                            .document(firebaseAuth.getCurrentUser().getEmail())
+                            .collection("Favorite")
+                            .document(product.getIdMeal())
+                            .delete();
+                }
             }
         });
 

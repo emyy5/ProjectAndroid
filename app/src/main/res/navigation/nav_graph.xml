@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/Home">
+    app:startDestination="@id/splashScrren">
     <fragment
         android:id="@+id/splashScrren"
         android:name="com.example.foodplanner.view.SplashScreen"
-        android:label="fragment_splash_scrren"
-        tools:layout="@layout/fragment_splash_scrren" >
+        android:label="Splach"
+        tools:layout="@layout/fragment_splash_scrren">
         <action
             android:id="@+id/action_splashScrren_to_logIn"
             app:destination="@id/logIn" />
@@ -16,8 +16,8 @@
     <fragment
         android:id="@+id/logIn"
         android:name="com.example.foodplanner.view.LogIn"
-        android:label="fragment_log_in"
-        tools:layout="@layout/fragment_log_in" >
+        android:label="LogIn"
+        tools:layout="@layout/fragment_log_in">
         <action
             android:id="@+id/action_logIn_to_Home"
             app:destination="@id/Home" />
@@ -31,8 +31,8 @@
     <fragment
         android:id="@+id/Home"
         android:name="com.example.foodplanner.view.Home"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_Home_to_details_Fragment"
             app:destination="@id/details_Fragment" />
@@ -40,8 +40,8 @@
     <fragment
         android:id="@+id/register"
         android:name="com.example.foodplanner.view.Register"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_register_to_Home"
             app:destination="@id/Home" />
@@ -57,10 +57,19 @@
     <fragment
         android:id="@+id/details_Fragment"
         android:name="com.example.foodplanner.view.Details_Fragment"
-        android:label="fragment_details_"
-        tools:layout="@layout/fragment_details_" >
+        android:label="Details"
+        tools:layout="@layout/fragment_details_">
         <argument
             android:name="id"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/favmeal"
+        android:name="com.example.foodplanner.view.FavMealFragment"
+        android:label="Favorite" />
+    <fragment
+        android:id="@+id/weekplan"
+        android:name="com.example.foodplanner.WeekMealFragment"
+        android:label="fragment_week_meal"
+        tools:layout="@layout/fragment_week_meal" />
 </navigation>

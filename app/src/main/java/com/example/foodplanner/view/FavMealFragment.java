@@ -2,19 +2,18 @@ package com.example.foodplanner.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.View;
-
-
-import com.example.foodplanner.dataLayer.room.FavproductDao;
 import com.example.foodplanner.R;
-import com.example.foodplanner.dataLayer.room.RandomMeal;
 import com.example.foodplanner.dataLayer.Repository;
+import com.example.foodplanner.dataLayer.pojes.RandomMeal;
+import com.example.foodplanner.dataLayer.room.FavproductDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,18 +27,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class FavMealFragment extends Fragment {
 
-    FavproductDao favproductDao;
-    private static final String BASE_URL= "https://www.themealdb.com/api/json/v1/1/";
-    private static final String TAG = "API_Client";
-    List<RandomMeal> product;
+
     RecyclerView recyclerView;
     List<RandomMeal> myList = new ArrayList<>();
     FavAdapter myAdapter;
     Repository repository;
 
-    public FavMealFragment() {
-
-    }
 
 
 
@@ -53,14 +46,6 @@ public class FavMealFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         myAdapter = new FavAdapter(requireContext(), myList);
         repository = new Repository(requireContext());
-    }
-
-    @SuppressLint("WrongViewCast")
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
         repository.getStoreProduct().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<List<RandomMeal>>() {
@@ -71,6 +56,7 @@ public class FavMealFragment extends Fragment {
 
                     @Override
                     public void onSuccess(@NonNull List<RandomMeal> products) {
+                        Toast.makeText(getContext(), ""+products.size(), Toast.LENGTH_SHORT).show();
                         myAdapter.setProducts(products);
                         myAdapter.notifyDataSetChanged();
                     }
@@ -84,4 +70,5 @@ public class FavMealFragment extends Fragment {
 
         recyclerView.setAdapter(myAdapter);
     }
+
 }

@@ -11,4 +11,26 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Fav" />
+    <string name="favbttn">favbbtn</string>
+
+    <string name="facebook_app_id">1234</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">56789</string>
+
+    <string name="select">select item</string>
+
+    //heading
+    <string name="heading_one"> one</string>
+    <string name="heading_two" >two</string>
+    <string name="heading_three" >three</string>
+
+
+    //Describtion
+
+    <string name="desc_one"> desone</string>
+    <string name="desc_two"> destwo</string>
+    <string name="desc_three"> desthree</string>
+
+
+
 </resources>

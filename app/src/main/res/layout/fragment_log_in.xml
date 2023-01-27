@@ -130,6 +130,19 @@
                 app:srcCompat="@drawable/google_logo" />
 
 
+            <ImageView
+                android:id="@+id/img_facebook"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.731"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.954"
+                app:srcCompat="@drawable/facebook" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
