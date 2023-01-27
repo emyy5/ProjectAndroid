@@ -1,16 +1,12 @@
 package com.example.foodplanner.view;
 
-import static com.example.foodplanner.view.Register.TAG;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -19,10 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 import com.example.foodplanner.dataLayer.Repository;
-import com.example.foodplanner.dataLayer.room.RandomMeal;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
+import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -62,12 +55,15 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
                repository.insert(meal);
                FirebaseFirestore db = FirebaseFirestore.getInstance();
                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-               db
-                       .collection("database")
-                       .document(firebaseAuth.getCurrentUser().getEmail())
-                       .collection("Favorite")
-                       .document(meal.getIdMeal())
-                       .set(meal);
+               if (firebaseAuth.getCurrentUser()!=null){
+                   db
+                           .collection("database")
+                           .document(firebaseAuth.getCurrentUser().getEmail())
+                           .collection("Favorite")
+                           .document(meal.getIdMeal())
+                           .set(meal);
+               }
+
 
 
            }
@@ -102,7 +98,7 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
 
         @Override
         public void onClick(View v) {
-            HomeDirections.ActionHomeToDetailsFragment action = HomeDirections.actionHomeToDetailsFragment(meals.get(this.getAdapterPosition()).getIdMeal());
+            HomeFragmentDirections.ActionHomeToDetailsFragment action = HomeFragmentDirections.actionHomeToDetailsFragment(meals.get(this.getAdapterPosition()).getIdMeal());
             Navigation.findNavController(v).navigate(action);
 
 

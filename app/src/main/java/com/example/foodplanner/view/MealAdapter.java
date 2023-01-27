@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.dataLayer.room.RandomMeal;
-
+import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 
 import java.util.ArrayList;
 

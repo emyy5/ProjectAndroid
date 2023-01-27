@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 import com.example.foodplanner.dataLayer.pojes.RandomRoot;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
 import com.example.foodplanner.dataLayer.retrofitApi.APIinterface;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -32,7 +34,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 
-public class Home extends Fragment {
+public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
     RandomAdapter adapter;
@@ -46,7 +48,7 @@ public class Home extends Fragment {
     Repository repository;
 
 
-    public Home() {
+    public HomeFragment() {
     }
 
 
@@ -74,6 +76,17 @@ public class Home extends Fragment {
         randomMealImage = view.findViewById(R.id.image);
         fav_btn= view.findViewById(R.id.fav_btn);
 
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+
+        ImageView logutBtn = view.findViewById(R.id.logoutBtn);
+        logutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firebaseAuth.signOut();
+                Navigation.findNavController(view).navigate(R.id.logIn);
+            }
+        });
 
         fav_btn.setOnClickListener(new View.OnClickListener() {
             @Override

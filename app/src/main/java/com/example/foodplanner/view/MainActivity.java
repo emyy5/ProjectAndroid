@@ -1,9 +1,13 @@
 package com.example.foodplanner.view;
 
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
@@ -26,10 +30,26 @@ public class MainActivity extends AppCompatActivity {
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 
         navController = Navigation.findNavController(this,R.id.nav_host_fragment);
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.buton_navigation);
-//        NavigationUI.setupActionBarWithNavController(this, navController);
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
+                switch (navDestination.getId()){
+                    case  R.id.splashScrren:
+                    case  R.id.logIn:
+                    case  R.id.register:
+                        bottomNavigationView.setVisibility(View.GONE);
+                        break;
+                    default:
+                        bottomNavigationView.setVisibility(View.VISIBLE);
+                }
+
+
+
+            }
+        });
+//        NavigationUI.setupActionBarWithNavController(this, navController);
 
 
 

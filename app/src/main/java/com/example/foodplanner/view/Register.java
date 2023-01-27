@@ -73,7 +73,7 @@ public class Register extends Fragment {
         haveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_register_to_logIn);
+                Navigation.findNavController(view).navigate(R.id.logIn);
             }
         });
         btn_register.setOnClickListener(new View.OnClickListener() {

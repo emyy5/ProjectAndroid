@@ -1,7 +1,5 @@
 package com.example.foodplanner.dataLayer.pojes;
 
-import com.example.foodplanner.dataLayer.room.RandomMeal;
-
 import java.util.ArrayList;
 
 public class RandomRoot {
