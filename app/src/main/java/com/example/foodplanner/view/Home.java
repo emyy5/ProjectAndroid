@@ -1,27 +1,28 @@
 package com.example.foodplanner.view;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.R;
 import com.example.foodplanner.dataLayer.Repository;
+import com.example.foodplanner.dataLayer.pojes.RandomMeal;
+import com.example.foodplanner.dataLayer.pojes.RandomRoot;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
 import com.example.foodplanner.dataLayer.retrofitApi.APIinterface;
-import com.example.foodplanner.R;
-import com.example.foodplanner.dataLayer.room.RandomMeal;
-import com.example.foodplanner.dataLayer.pojes.RandomRoot;
 
 import java.util.ArrayList;
 
@@ -33,15 +34,16 @@ import retrofit2.Retrofit;
 
 public class Home extends Fragment {
 
-    private static Retrofit retrofit;
     RecyclerView recyclerView;
     RandomAdapter adapter;
+    Button fav_btn;
 
     // ui for random meal
 
     TextView randomMealName;
     TextView randomMealId;
     ImageView randomMealImage;
+    Repository repository;
 
 
     public Home() {
@@ -52,6 +54,7 @@ public class Home extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        repository= new Repository(getContext());
 
     }
 
@@ -69,7 +72,17 @@ public class Home extends Fragment {
         randomMealName = view.findViewById(R.id.mealName);
         randomMealId = view.findViewById(R.id.mealId);
         randomMealImage = view.findViewById(R.id.image);
+        fav_btn= view.findViewById(R.id.fav_btn);
 
+
+        fav_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Navigation.findNavController(view).navigate(R.id.favmeal);
+
+            }
+        });
 
         Retrofit apiClient = APIClient.getClient();
 
