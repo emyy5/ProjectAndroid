@@ -1,6 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".WeekMealFragment"/>
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".WeekMealFragment">
+
+
+            <TextView
+                android:gravity="center"
+                android:background="@color/brawn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bb"
+                android:textSize="20sp"
+                android:text="Saturday"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylerViewSat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:listitem="@layout/row_plan"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            <TextView
+                android:gravity="center"
+                android:background="@color/brawn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bb"
+                android:textSize="20sp"
+                android:text="Sunday"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylerViewSun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:listitem="@layout/row_plan"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            <TextView
+                android:gravity="center"
+                android:background="@color/brawn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bb"
+                android:textSize="20sp"
+                android:text="Monday"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylerViewMon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:listitem="@layout/row_plan"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            <TextView
+                android:gravity="center"
+                android:background="@color/brawn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bb"
+                android:textSize="20sp"
+                android:text="Tuesday"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylerViewTus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:listitem="@layout/row_plan"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
+            <TextView
+                android:gravity="center"
+                android:background="@color/brawn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bb"
+                android:textSize="20sp"
+                android:text="wednesday"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylerViewwens"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:listitem="@layout/row_plan"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <TextView
+            android:gravity="center"
+            android:background="@color/brawn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/bb"
+            android:textSize="20sp"
+            android:text="Tuesday"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylerViewthurs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:listitem="@layout/row_plan"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
+        <TextView
+            android:gravity="center"
+            android:background="@color/brawn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/bb"
+            android:textSize="20sp"
+            android:text="Friday"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylerViewfriday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:listitem="@layout/row_plan"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+    </LinearLayout>
+</ScrollView>

@@ -8,6 +8,7 @@ public class DetailMeal {
     public String strMealThumb;
     public String strYoutube;
 
+
     public DetailMeal(String idMeal, String strMeal, String strArea, String strInstructions, String strMealThumb, String strYoutube) {
         this.idMeal = idMeal;
         this.strMeal = strMeal;
@@ -15,6 +16,7 @@ public class DetailMeal {
         this.strInstructions = strInstructions;
         this.strMealThumb = strMealThumb;
         this.strYoutube = strYoutube;
+
     }
 
     public String getIdMeal() {
@@ -39,5 +41,24 @@ public class DetailMeal {
 
     public String getStrYoutube() {
         return strYoutube;
+    }
+    public RandomMeal convertoRandomMeal(DetailMeal detailMeal)
+
+    {   RandomMeal randomMeal=new RandomMeal();
+        randomMeal.setIdMeal(detailMeal.getIdMeal());
+        randomMeal.setStrArea(detailMeal.getStrArea());
+        randomMeal.setStrMeal(detailMeal.getStrMeal());
+        randomMeal.setStrMealThumb(detailMeal.getStrMealThumb());
+        randomMeal.setStrInstructions(detailMeal.getStrInstructions());
+        return randomMeal;
+    }
+    public WeekMeals convertToWeakMeal(DetailMeal detailMeal,String day){
+        WeekMeals weekMeals=new WeekMeals();
+        weekMeals.setDay(day);
+        weekMeals.setIdMeal(detailMeal.getIdMeal());
+        weekMeals.setStrArea(detailMeal.getStrArea());
+        weekMeals.setStrMealThumb(detailMeal.getStrMealThumb());
+        weekMeals.setStrMeal(detailMeal.getStrMeal());
+        return weekMeals;
     }
 }
