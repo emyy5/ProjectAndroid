@@ -81,9 +81,6 @@ public class CategorySearchAdapter extends RecyclerView.Adapter<CategorySearchAd
             Navigation.findNavController(v).navigate(action);
 
 
-
-
-
         }
     }
 }

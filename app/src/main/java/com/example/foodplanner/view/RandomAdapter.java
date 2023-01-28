@@ -25,6 +25,7 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
 
     Repository repository;
     private ArrayList<RandomMeal> meals;
+    long id ;
 
     public RandomAdapter(ArrayList<RandomMeal> meals,Context context) {
         this.meals = meals;
@@ -98,8 +99,9 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
 
         @Override
         public void onClick(View v) {
-//            HomeFragmentDirections.ActionHomeToDetailsFragment action = HomeFragmentDirections.actionHomeToDetailsFragment(meals.get(this.getAdapterPosition()).getIdMeal());
-//            Navigation.findNavController(v).navigate(action);
+            HomeFragmentDirections.ActionHomeToDetailsFragment action = HomeFragmentDirections.actionHomeToDetailsFragment();
+            action.setId(Long.parseLong(meals.get(this.getAdapterPosition()).getIdMeal()));
+            Navigation.findNavController(v).navigate(action);
 
 
         }

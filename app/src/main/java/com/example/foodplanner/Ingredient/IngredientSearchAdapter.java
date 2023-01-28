@@ -65,7 +65,6 @@ public class IngredientSearchAdapter extends RecyclerView.Adapter<IngredientSear
             mealName = itemView.findViewById(R.id.mealnamee);
             itemView.setOnClickListener(this);
 
-
         }
 
 
@@ -73,15 +72,10 @@ public class IngredientSearchAdapter extends RecyclerView.Adapter<IngredientSear
         @Override
         public void onClick(View v) {
 
-//            Category_FragmentDirections.ActionCategoryFragmentToSearchCategory action = Category_FragmentDirections.actionCategoryFragmentToSearchCategory();
-//            action.setCategoryname(categories.get(this.getAdapterPosition()).getStrCategory());
-//            Navigation.findNavController(v).navigate(action);
 
-//            IngredientSearchDirections.ActionIngredientSearchToDetailsFragment action = IngredientSearchDirections.actionIngredientSearchToDetailsFragment();
-//            action.setId(meals.get(this.getAdapterPosition()).getIdMeal());
-//            Navigation.findNavController(v).navigate(action);
-//
-
+            IngredientSearchDirections.ActionIngredientSearchToDetailsFragment action = IngredientSearchDirections.actionIngredientSearchToDetailsFragment();
+            action.setId(meals.get(this.getAdapterPosition()).getIdMeal());
+            Navigation.findNavController(v).navigate(action);
 
         }
     }

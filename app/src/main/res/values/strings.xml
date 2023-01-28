@@ -49,6 +49,11 @@
     <string name="searchmealsbycountry">Search for meal by country</string>
     <string name="mealbycategoryy">Search for meal by category</string>
     <string name="ingredientsearch">Search for meals by ingredient</string>
+    <string name="name">Name</string>
+    <string name="area">Country</string>
+    <string name="youtubevideo">Youtube Video</string>
+    <string name="steps">Steps</string>
+    <string name="addtoFav">Add To Favourite</string>
 
 
 </resources>

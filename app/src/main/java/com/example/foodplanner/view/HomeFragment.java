@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,6 +39,8 @@ public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
     RandomAdapter adapter;
+    CardView randomCard;
+    String mealId;
 
 
     // ui for random meal
@@ -74,6 +77,7 @@ public class HomeFragment extends Fragment {
         randomMealName = view.findViewById(R.id.mealName);
         randomMealId = view.findViewById(R.id.mealId);
         randomMealImage = view.findViewById(R.id.image);
+        randomCard=view.findViewById(R.id.RandomCard);
 
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -104,8 +108,9 @@ public class HomeFragment extends Fragment {
                     Log.i("img", "onResponse:" + imgURl);
                     Glide.with(randomMealImage.getContext()).load(imgURl).into(randomMealImage);
 
-                    randomMealName.setText(response.getMeals().get(0).getIdMeal().toString());
-                    randomMealId.setText(response.getMeals().get(0).getStrMeal());
+                    randomMealName.setText(response.getMeals().get(0).getStrMeal());
+                    randomMealId.setText(response.getMeals().get(0).getIdMeal().toString());
+                    mealId.equals(response.getMeals().get(0).getIdMeal().toString());
 
 
                 }, error -> {
@@ -135,5 +140,15 @@ public class HomeFragment extends Fragment {
 
                             error.getMessage();
                         });
+        randomCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                HomeFragmentDirections.ActionHomeToDetailsFragment action = HomeFragmentDirections.actionHomeToDetailsFragment();
+                action.setId(Long.parseLong(randomMealId.getText().toString()));
+                Navigation.findNavController(view).navigate(action);
+
+            }
+        });
     }
     }

@@ -76,15 +76,10 @@ public class CountrySearchAdapter extends RecyclerView.Adapter<CountrySearchAdap
         @Override
         public void onClick(View v) {
 
-//            SearchCategoryDirections.ActionSearchCategoryToDetailsFragment2 action = SearchCategoryDirections.actionSearchCategoryToDetailsFragment2();
-//            action.setId(meals.get(this.getAdapterPosition()).getIdMeal());
-//            Navigation.findNavController(v).navigate(action);
 
-//
-//            CountrySearchD
-//            CountrySearchDirections.ActionCountrySearchToDetailsFragment action = CountrySearchDirections.actionCountrySearchToDetailsFragment();
-//            action.setId(meals.get(this.getAdapterPosition()).getIdMeal());
-//            Navigation.findNavController(v).navigate(action);
+            CountrySearchDirections.ActionCountrySearchToDetailsFragment action = CountrySearchDirections.actionCountrySearchToDetailsFragment();
+            action.setId(meals.get(this.getAdapterPosition()).getIdMeal());
+            Navigation.findNavController(v).navigate(action);
         }
     }
 }
