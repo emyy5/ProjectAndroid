@@ -101,7 +101,7 @@ public class Repository {
                                 .collection("database")
                                 .document(firebaseAuth.getCurrentUser().getEmail())
                                 .collection("Favorite")
-                                .document(product.getIdMeal())
+                                .document(String.valueOf(product.getIdMeal()))
                                 .delete();
 
                         Toast.makeText(context, "Data Removed", Toast.LENGTH_SHORT).show();

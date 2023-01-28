@@ -55,7 +55,7 @@ public class DetailMeal {
     public WeekMeals convertToWeakMeal(DetailMeal detailMeal,String day){
         WeekMeals weekMeals=new WeekMeals();
         weekMeals.setDay(day);
-        weekMeals.setIdMeal(detailMeal.getIdMeal());
+        weekMeals.setIdMeal(String.valueOf(detailMeal.getIdMeal()));
         weekMeals.setStrArea(detailMeal.getStrArea());
         weekMeals.setStrMealThumb(detailMeal.getStrMealThumb());
         weekMeals.setStrMeal(detailMeal.getStrMeal());

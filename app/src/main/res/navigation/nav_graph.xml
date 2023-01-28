@@ -125,6 +125,9 @@
             android:name="ingredientname"
             app:argType="string"
             android:defaultValue="null" />
+        <action
+            android:id="@+id/action_ingredientSearch_to_details_Fragment"
+            app:destination="@id/details_Fragment" />
     </fragment>
     <fragment
         android:id="@+id/country_Fragment"
@@ -143,6 +146,9 @@
             android:name="countryname"
             app:argType="string"
             android:defaultValue="null" />
+        <action
+            android:id="@+id/action_countrySearch_to_details_Fragment"
+            app:destination="@id/details_Fragment" />
     </fragment>
 
 </navigation>
