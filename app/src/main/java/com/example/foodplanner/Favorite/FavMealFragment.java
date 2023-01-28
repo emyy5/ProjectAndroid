@@ -1,4 +1,4 @@
-package com.example.foodplanner.view;
+package com.example.foodplanner.Favorite;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.foodplanner.Favorite.FavAdapter;
 import com.example.foodplanner.R;
 import com.example.foodplanner.dataLayer.Repository;
 import com.example.foodplanner.dataLayer.pojes.RandomMeal;

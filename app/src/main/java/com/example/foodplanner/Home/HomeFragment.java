@@ -1,4 +1,4 @@
-package com.example.foodplanner.view;
+package com.example.foodplanner.Home;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +26,7 @@ import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 import com.example.foodplanner.dataLayer.pojes.RandomRoot;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
 import com.example.foodplanner.dataLayer.retrofitApi.APIinterface;
+import com.example.foodplanner.view.RandomAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;

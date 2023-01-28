@@ -1,4 +1,4 @@
-package com.example.foodplanner.view;
+package com.example.foodplanner.Details;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +19,9 @@ import com.example.foodplanner.RetroFit.APIinterface;
 import com.example.foodplanner.dataLayer.pojes.DetailMeal;
 import com.example.foodplanner.dataLayer.pojes.DetailRoot;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +33,8 @@ import retrofit2.Retrofit;
 
 public class Details_Fragment extends Fragment {
 
-    Long id ;;
+    Long id;
+    ;
     ArrayList<DetailMeal> details;
     List<CategorySearchModel> categoryMealDetails;
 
@@ -39,9 +43,8 @@ public class Details_Fragment extends Fragment {
     ImageView detailImage;
     TextView detailName;
     TextView detailArea;
-    TextView detailInstructions ;
+    TextView detailInstructions;
     YouTubePlayerView youTubePlayerView;
-
 
 
     @Override
@@ -65,14 +68,12 @@ public class Details_Fragment extends Fragment {
         id = Details_FragmentArgs.fromBundle(getArguments()).getId();
 
 
-
         detailName = view.findViewById(R.id.detailName);
         detailArea = view.findViewById(R.id.detailArea);
-        detailImage= view.findViewById(R.id.detailImage);
-        detailInstructions=view.findViewById(R.id.detailInstruction);
+        detailImage = view.findViewById(R.id.detailImage);
+        detailInstructions = view.findViewById(R.id.detailInstruction);
         youTubePlayerView = view.findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
-
 
 
 //        detailName.setText(id.toString());
@@ -80,9 +81,9 @@ public class Details_Fragment extends Fragment {
         getMealsDetails();
 
 //                repository.insertplan(detailMeal.convertToWeakMeal(detailMeal,"saturday"));
-            }
-        });
     }
+
+
     public void getMealsDetails() {
 
         Retrofit apiClient = APIClient.getClient();
@@ -111,7 +112,7 @@ public class Details_Fragment extends Fragment {
 
                             try {
                                 youTubePlayer.loadVideo(videoId[1], 0);
-                            }catch (ArrayIndexOutOfBoundsException exception){
+                            } catch (ArrayIndexOutOfBoundsException exception) {
                                 exception.printStackTrace();
                             }
 
@@ -123,6 +124,7 @@ public class Details_Fragment extends Fragment {
 
                 });
     }
+
 
     @Override
     public void onDestroyView() {

@@ -91,15 +91,6 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
 
         }
 
-
-        @Override
-        public void onClick(View v) {
-            HomeFragmentDirections.ActionHomeToDetailsFragment action = HomeFragmentDirections.actionHomeToDetailsFragment();
-            action.setId(Long.parseLong(meals.get(this.getAdapterPosition()).getIdMeal()));
-            Navigation.findNavController(v).navigate(action);
-
-
-        }
     }
 }
 

@@ -1,4 +1,4 @@
-package com.example.foodplanner.view;
+package com.example.foodplanner.Favorite;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/Home"
-        android:name="com.example.foodplanner.view.HomeFragment"
+        android:name="com.example.foodplanner.Home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
@@ -54,7 +54,7 @@
 
     <fragment
         android:id="@+id/details_Fragment"
-        android:name="com.example.foodplanner.view.Details_Fragment"
+        android:name="com.example.foodplanner.Details.Details_Fragment"
         android:label="Details"
         tools:layout="@layout/fragment_details_">
         <argument
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/favmeal"
-        android:name="com.example.foodplanner.view.FavMealFragment"
+        android:name="com.example.foodplanner.Favorite.FavMealFragment"
         android:label="Favorite" />
 
     <fragment
