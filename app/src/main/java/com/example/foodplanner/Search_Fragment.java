@@ -54,5 +54,12 @@ public class Search_Fragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_saerchId_to_category_Fragment);
             }
         });
+
+        ingredient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_saerchId_to_ingredient_Fragment);
+            }
+        });
     }
 }

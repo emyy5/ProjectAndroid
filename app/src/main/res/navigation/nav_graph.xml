@@ -59,16 +59,69 @@
         tools:layout="@layout/fragment_details_">
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="long"
+            android:defaultValue="0L" />
     </fragment>
     <fragment
         android:id="@+id/favmeal"
         android:name="com.example.foodplanner.view.FavMealFragment"
         android:label="Favorite" />
+
+    <fragment
+        android:id="@+id/saerchId"
+        android:name="com.example.foodplanner.Search_Fragment"
+        android:label="Search" >
+        <action
+            android:id="@+id/action_saerchId_to_category_Fragment"
+            app:destination="@id/category_Fragment" />
+        <action
+            android:id="@+id/action_saerchId_to_ingredient_Fragment"
+            app:destination="@id/ingredient_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/weekplan"
         android:name="com.example.foodplanner.WeekMealFragment"
         android:label="fragment_week_meal"
         tools:layout="@layout/fragment_week_meal" />
+    <fragment
+        android:id="@+id/category_Fragment"
+        android:name="com.example.foodplanner.Category.Category_Fragment"
+        android:label="fragment_category_"
+        tools:layout="@layout/fragment_category_" >
+        <action
+            android:id="@+id/action_category_Fragment_to_searchCategory"
+            app:destination="@id/searchCategory" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchCategory"
+        android:name="com.example.foodplanner.Category.SearchCategory"
+        android:label="SearchCategory" >
+        <action
+            android:id="@+id/action_searchCategory_to_details_Fragment"
+            app:destination="@id/details_Fragment" />
+        <argument
+            android:name="categoryname"
+            app:argType="string"
+            android:defaultValue="null" />
+    </fragment>
+    <fragment
+        android:id="@+id/ingredient_Fragment"
+        android:name="com.example.foodplanner.Ingredient.Ingredient_Fragment"
+        android:label="fragment_ingredient_"
+        tools:layout="@layout/fragment_ingredient_" >
+        <action
+            android:id="@+id/action_ingredient_Fragment_to_ingredientSearch"
+            app:destination="@id/ingredientSearch" />
+    </fragment>
+    <fragment
+        android:id="@+id/ingredientSearch"
+        android:name="com.example.foodplanner.Ingredient.IngredientSearch"
+        android:label="fragment_ingredient_search"
+        tools:layout="@layout/fragment_ingredient_search" >
+        <argument
+            android:name="ingredientname"
+            app:argType="string"
+            android:defaultValue="null" />
+    </fragment>
 
 </navigation>

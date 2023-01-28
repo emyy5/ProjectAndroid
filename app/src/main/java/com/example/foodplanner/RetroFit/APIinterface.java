@@ -8,6 +8,8 @@ package com.example.foodplanner.RetroFit;
 //import com.example.foodplanner.Ingredient.IngredientSearchRoot;
 import com.example.foodplanner.Category.CategoryRoot;
 import com.example.foodplanner.Category.CategorySearchRoot;
+import com.example.foodplanner.Ingredient.IngredientRoot;
+import com.example.foodplanner.Ingredient.IngredientSearchRoot;
 import com.example.foodplanner.dataLayer.pojes.DetailRoot;
 import com.example.foodplanner.dataLayer.pojes.RandomRoot;
 
@@ -41,11 +43,11 @@ public interface APIinterface {
 //    @GET("filter.php")
 //    Observable<CountrySearchRoot> getMealsByCountry(@Query("a") String countryname);
 //
-//    @GET("list.php")
-//    Observable<IngredientRoot> getIngredients(@Query("i") String list);
-//
-//    @GET("filter.php")
-//    Observable<IngredientSearchRoot>getIngredientMeals(@Query("i") String ingredientname);
+    @GET("list.php")
+    Observable<IngredientRoot> getIngredients(@Query("i") String list);
+
+    @GET("filter.php")
+    Observable<IngredientSearchRoot>getIngredientMeals(@Query("i") String ingredientname);
 
 
 }

@@ -9,8 +9,7 @@
     <string name="favIcon">Fav</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="Fav" />
+
     <string name="favbttn">favbbtn</string>
 
     <string name="facebook_app_id">1234</string>
@@ -21,8 +20,8 @@
 
     //heading
     <string name="heading_one"> one</string>
-    <string name="heading_two" >two</string>
-    <string name="heading_three" >three</string>
+    <string name="heading_two">two</string>
+    <string name="heading_three">three</string>
 
 
     //Describtion
@@ -30,7 +29,26 @@
     <string name="desc_one"> desone</string>
     <string name="desc_two"> destwo</string>
     <string name="desc_three"> desthree</string>
+    <string name="searchby">Search By</string>
+    <string name="categorytext">Category</string>
+    <string name="countrytext">Country</string>
+    <string name="ingredient">Ingredient</string>
 
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Fav" />
+    <string name="searchbycategory">Search By Category</string>
+    <string name="categories">Categories</string>
+    <string name="country">Countries</string>
+    <string name="countrysearch">Search By Country</string>
+    <string name="ingredientSearch">Search by ingredient</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="mealsbyingredienr">Meals by ingredient</string>
+    <string name="mealbycategory">Meals by Category</string>
+    <string name="mealsbtcategory">Meals by Category</string>
+    <string name="searchmealsbycountry">Search for meal by country</string>
+    <string name="mealbycategoryy">Search for meal by category</string>
+    <string name="ingredientsearch">Search for meals by ingredient</string>
 
 
 </resources>

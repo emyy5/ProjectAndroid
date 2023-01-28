@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home"
+    tools:context=".Ingredient.Ingredient_Fragment" >
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ingredient_search"
+        android:layout_width="313dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ingredient_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ingredientSearch" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <SearchView
+        android:layout_width="68dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/ingredient_search"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ingredient_search" />
+
+    <TextView
+        android:id="@+id/ingredients"
+        android:layout_width="241dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/ingredients"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingredient_search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ingredientRecycler"
+        android:layout_width="403dp"
+        android:layout_height="560dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingredients"
+        tools:listitem="@layout/ingredient_row"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
