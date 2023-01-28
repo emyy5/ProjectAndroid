@@ -62,7 +62,7 @@ public class Details_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        id = Details_FragmentArgs.fromBundle(getArguments()).getId();
+//        id = Details_FragmentArgs.fromBundle(getArguments()).getId();
 
         repository=new Repository(requireContext());
         detailName = view.findViewById(R.id.detailName);

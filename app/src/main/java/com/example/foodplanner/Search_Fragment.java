@@ -55,6 +55,13 @@ public class Search_Fragment extends Fragment {
             }
         });
 
+        country.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_saerchId_to_country_Fragment);
+            }
+        });
+
         ingredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

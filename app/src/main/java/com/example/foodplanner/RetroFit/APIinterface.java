@@ -8,6 +8,8 @@ package com.example.foodplanner.RetroFit;
 //import com.example.foodplanner.Ingredient.IngredientSearchRoot;
 import com.example.foodplanner.Category.CategoryRoot;
 import com.example.foodplanner.Category.CategorySearchRoot;
+import com.example.foodplanner.Country.CountryRoot;
+import com.example.foodplanner.Country.CountrySearchRoot;
 import com.example.foodplanner.Ingredient.IngredientRoot;
 import com.example.foodplanner.Ingredient.IngredientSearchRoot;
 import com.example.foodplanner.dataLayer.pojes.DetailRoot;
@@ -36,13 +38,13 @@ public interface APIinterface {
     @GET("filter.php")
     Observable<CategorySearchRoot> getMealsByCategory(@Query("c")String categoryname);
 
-//    @GET("list.php")
-//    Observable<CountryRoot> getCountry(@Query("a") String list);
-//
-//
-//    @GET("filter.php")
-//    Observable<CountrySearchRoot> getMealsByCountry(@Query("a") String countryname);
-//
+    @GET("list.php")
+    Observable<CountryRoot> getCountry(@Query("a") String list);
+
+
+    @GET("filter.php")
+    Observable<CountrySearchRoot> getMealsByCountry(@Query("a") String countryname);
+
     @GET("list.php")
     Observable<IngredientRoot> getIngredients(@Query("i") String list);
 

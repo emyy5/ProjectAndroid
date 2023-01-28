@@ -77,6 +77,9 @@
         <action
             android:id="@+id/action_saerchId_to_ingredient_Fragment"
             app:destination="@id/ingredient_Fragment" />
+        <action
+            android:id="@+id/action_saerchId_to_country_Fragment"
+            app:destination="@id/country_Fragment" />
     </fragment>
     <fragment
         android:id="@+id/weekplan"
@@ -120,6 +123,24 @@
         tools:layout="@layout/fragment_ingredient_search" >
         <argument
             android:name="ingredientname"
+            app:argType="string"
+            android:defaultValue="null" />
+    </fragment>
+    <fragment
+        android:id="@+id/country_Fragment"
+        android:name="com.example.foodplanner.Country.Country_Fragment"
+        android:label="fragment_country_search"
+        tools:layout="@layout/fragment_country_search" >
+        <action
+            android:id="@+id/action_country_Fragment_to_countrySearch"
+            app:destination="@id/countrySearch" />
+    </fragment>
+    <fragment
+        android:id="@+id/countrySearch"
+        android:name="com.example.foodplanner.Country.CountrySearch"
+        android:label="CountrySearch" >
+        <argument
+            android:name="countryname"
             app:argType="string"
             android:defaultValue="null" />
     </fragment>
