@@ -64,6 +64,24 @@ holder.removePlan.setOnClickListener(new View.OnClickListener() {
                 notifyItemRemoved(position);
                 weekMealsList.remove(position);
 
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                db
+                        .collection("database")
+                        .document(firebaseAuth.getCurrentUser().getEmail())
+                        .collection("WeekMeals")
+                        .document(weekMeals.getIdMeal())
+                        .set(weekMeals);
+
+                if (firebaseAuth.getCurrentUser()!=null) {
+                    db
+                            .collection("database")
+                            .document(firebaseAuth.getCurrentUser().getEmail())
+                            .collection("WeekMeals")
+                            .document(weekMeals.getIdMeal())
+                            .delete();
+                }
 
                 Toast.makeText(context, "Data Removed", Toast.LENGTH_SHORT).show();
             }
@@ -73,8 +91,6 @@ holder.removePlan.setOnClickListener(new View.OnClickListener() {
 
             }
         });
-
-
 
     }
 });
