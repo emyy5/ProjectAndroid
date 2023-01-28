@@ -6,7 +6,6 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 import com.example.foodplanner.dataLayer.pojes.WeekMeals;
 
 import java.util.List;
@@ -19,8 +18,13 @@ import io.reactivex.rxjava3.core.Single;
 public interface WeekproductDao {
 
         @Query("SELECT * FROM WeekMeals")
-        public Single<List<WeekMeals>> getAllProducts();
+        public Single<List<WeekMeals>> getAllWeekMeals();
 
+        @Query("SELECT * FROM WeekMeals WHERE day = :day")
+        public Single<List<WeekMeals>> getAllWeekMealsByDay(String day);
+
+
+        
         @Insert(onConflict = OnConflictStrategy.IGNORE)
         public Completable insertProduct(WeekMeals product);
 

@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.WeekMeal.ChooseWeekMealDialog;
 import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 //        ActionBar actionBar = getSupportActionBar();
 //        actionBar.setDisplayShowHomeEnabled(true);
 //        actionBar.setDisplayHomeAsUpEnabled(true);

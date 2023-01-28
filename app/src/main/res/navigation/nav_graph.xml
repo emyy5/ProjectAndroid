@@ -69,7 +69,7 @@
 
     <fragment
         android:id="@+id/saerchId"
-        android:name="com.example.foodplanner.Search_Fragment"
+        android:name="com.example.foodplanner.Search.Search_Fragment"
         android:label="Search" >
         <action
             android:id="@+id/action_saerchId_to_category_Fragment"
@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/weekplan"
-        android:name="com.example.foodplanner.WeekMealFragment"
+        android:name="com.example.foodplanner.WeekMeal.WeekMealFragment"
         android:label="fragment_week_meal"
         tools:layout="@layout/fragment_week_meal" />
     <fragment

@@ -16,11 +16,8 @@ import com.example.foodplanner.R;
 import java.util.List;
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.MyViewHolder>  {
-
     private List<CountryModel> countries;
     String countryName;
-
-
     public CountryAdapter(List<CountryModel> countries) {
         this.countries = countries;
     }

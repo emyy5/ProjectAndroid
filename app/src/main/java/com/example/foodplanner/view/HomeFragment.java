@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
+import com.example.foodplanner.WeekMeal.ChooseWeekMealDialog;
 import com.example.foodplanner.dataLayer.Repository;
 import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 import com.example.foodplanner.dataLayer.pojes.RandomRoot;

@@ -11,7 +11,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.Search_FragmentDirections;
 
 import java.util.List;
 

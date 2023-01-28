@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="150dp"
+
+    android:layout_height="wrap_content">
+
+   <RadioGroup
+       android:id="@+id/weekChoiceGroup"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_gravity="center"
+       android:orientation="vertical">
+       <RadioButton
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Saturday"
+           android:id="@+id/sat_choice"/>
+       <RadioButton
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Sunday"
+           android:id="@+id/sun_choice"/>
+       <RadioButton
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Monday"
+           android:id="@+id/mon_choice"/>
+       <RadioButton
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Tuesday"
+           android:id="@+id/Tus_choice"/>
+       <RadioButton
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="wednesday"
+           android:id="@+id/wen_choice"/>
+       <RadioButton
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Thursday"
+           android:id="@+id/th_choice"/>
+       <RadioButton
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Friday"
+           android:id="@+id/fir_choice"/>
+
+   </RadioGroup>
+</LinearLayout>

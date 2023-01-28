@@ -3,6 +3,8 @@ package com.example.foodplanner.dataLayer;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.room.Query;
+
 import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 import com.example.foodplanner.dataLayer.pojes.WeekMeals;
 import com.example.foodplanner.dataLayer.room.FavproductDao;
@@ -33,15 +35,26 @@ public class Repository {
         this.context = context;
         MealDatabase db = MealDatabase.getInstance(context.getApplicationContext());
         favproductDao = db.favProductDao();
-        storeProduct = favproductDao.getAllProducts();
         weekproductDao= db.weekproductDao();
+
+
         firebaseAuth = FirebaseAuth.getInstance();
         fdb  = FirebaseFirestore.getInstance();
     }
 
     public Single<List<RandomMeal>> getStoreProduct() {
-        return storeProduct;
+        return favproductDao.getAllProducts();
     }
+
+
+    public Single<List<WeekMeals>> getAllWeekMeals(){
+        return weekproductDao.getAllWeekMeals();
+    }
+
+    public Single<List<WeekMeals>> getAllWeekMealsByDay(String day){
+        return weekproductDao.getAllWeekMealsByDay(day);
+    }
+
 
     public void insert (RandomMeal product){
         favproductDao.insertProduct(product)
@@ -64,26 +77,11 @@ public class Repository {
                     }
                 });
     }
-    public void insertplan (WeekMeals product){
+    public void insertplan (WeekMeals product,CompletableObserver completableObserver){
        weekproductDao.insertProduct(product)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Toast.makeText(context, "Data Inserted", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+                .subscribe(completableObserver);
     }
 
 
@@ -116,32 +114,11 @@ public class Repository {
                 });
     }
 
-    public void deleteplan (WeekMeals product){
+    public void deleteplan (WeekMeals weekMeals,CompletableObserver completableObserver){
         weekproductDao
-                .deleteProduct(product).subscribeOn(Schedulers.io())
+                .deleteProduct(weekMeals).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
+                .subscribe(completableObserver);
 
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        fdb
-                                .collection("database")
-                                .document(firebaseAuth.getCurrentUser().getEmail())
-                                .collection("Favorite")
-                                .document(product.getIdMeal())
-                                .delete();
-
-                        Toast.makeText(context, "Data Removed", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
     }
 }

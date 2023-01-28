@@ -85,7 +85,7 @@ public class Details_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                repository.insertplan(detailMeal.convertToWeakMeal(detailMeal,"saturday"));
+//                repository.insertplan(detailMeal.convertToWeakMeal(detailMeal,"saturday"));
             }
         });
     }

@@ -49,25 +49,23 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
         holder.meal_name.setText(meal.getStrMeal());
 
         Glide.with(holder.meal_image.getContext()).load(meal.getStrMealThumb()).into(holder.meal_image);
-       holder.favbtn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               repository.insert(meal);
-               FirebaseFirestore db = FirebaseFirestore.getInstance();
-               FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-               if (firebaseAuth.getCurrentUser()!=null){
-                   db
-                           .collection("database")
-                           .document(firebaseAuth.getCurrentUser().getEmail())
-                           .collection("Favorite")
-                           .document(meal.getIdMeal())
-                           .set(meal);
-               }
-
-
-
-           }
-       });
+//       holder.favbtn.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View view) {
+//               repository.insert(meal);
+//               FirebaseFirestore db = FirebaseFirestore.getInstance();
+//               FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+//               if (firebaseAuth.getCurrentUser()!=null){
+//                   db
+//                           .collection("database")
+//                           .document(firebaseAuth.getCurrentUser().getEmail())
+//                           .collection("Favorite")
+//                           .document(meal.getIdMeal())
+//                           .set(meal);
+//               }
+//
+//           }
+//       });
 
     }
 
@@ -76,13 +74,12 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
         return meals.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener   {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
         public ImageView meal_image;
 
         public TextView  meal_name,  meal_id;
-        Button favbtn;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,19 +87,10 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
            meal_image = itemView.findViewById(R.id.image);
            meal_name=itemView.findViewById(R.id.mealName);
            meal_id= itemView.findViewById(R.id.mealId);
-            favbtn= itemView.findViewById(R.id.favbtn);
-           itemView.setOnClickListener(this);
 
         }
 
 
-        @Override
-        public void onClick(View v) {
-//            HomeFragmentDirections.ActionHomeToDetailsFragment action = HomeFragmentDirections.actionHomeToDetailsFragment(meals.get(this.getAdapterPosition()).getIdMeal());
-//            Navigation.findNavController(v).navigate(action);
-
-
-        }
     }
 }
 

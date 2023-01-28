@@ -7,14 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.Category.CategoriesModel;
-import com.example.foodplanner.Category.Category_FragmentDirections;
-import com.example.foodplanner.Category.SearchCategoryDirections;
-import com.example.foodplanner.Ingredient.IngredientSearchModel;
 import com.example.foodplanner.R;
 
 import java.util.List;
