@@ -56,26 +56,12 @@ public class Repository {
     }
 
 
-    public void insert (RandomMeal product){
+    public void insert (RandomMeal product, CompletableObserver completableObserver){
+
         favproductDao.insertProduct(product)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Toast.makeText(context, "Data Inserted", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
+                .subscribe(completableObserver);
     }
     public void insertplan (WeekMeals product,CompletableObserver completableObserver){
        weekproductDao.insertProduct(product)

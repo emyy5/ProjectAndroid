@@ -82,6 +82,7 @@ public class ChooseWeekMealDialog extends Dialog {
                     @Override
                     public void onComplete() {
                         Toast.makeText(context, "Week Plan Inserted", Toast.LENGTH_SHORT).show();
+                        // add to firebase
 
                     }
 

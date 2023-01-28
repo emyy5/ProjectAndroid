@@ -50,23 +50,6 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
         holder.meal_name.setText(meal.getStrMeal());
 
         Glide.with(holder.meal_image.getContext()).load(meal.getStrMealThumb()).into(holder.meal_image);
-//       holder.favbtn.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View view) {
-//               repository.insert(meal);
-//               FirebaseFirestore db = FirebaseFirestore.getInstance();
-//               FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-//               if (firebaseAuth.getCurrentUser()!=null){
-//                   db
-//                           .collection("database")
-//                           .document(firebaseAuth.getCurrentUser().getEmail())
-//                           .collection("Favorite")
-//                           .document(meal.getIdMeal())
-//                           .set(meal);
-//               }
-//
-//           }
-//       });
 
     }
 
