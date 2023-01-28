@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home"
+    tools:context=".Search_Fragment">
+
+    <TextView
+        android:id="@+id/SearchId"
+        android:layout_width="183dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/searchby"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/categorytext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/categorytext"
+        android:layout_width="93dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="188dp"
+        android:text="@string/categorytext"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/countrytext"
+        android:layout_width="93dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/countrytext"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categorytext" />
+
+    <TextView
+        android:id="@+id/ingredienttext"
+        android:layout_width="106dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/ingredient"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countrytext" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
