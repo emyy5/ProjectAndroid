@@ -33,6 +33,7 @@ public class WeekMealsAdapter extends RecyclerView.Adapter<WeekMealsAdapter.MyVi
     public WeekMealsAdapter(List<WeekMeals> weekMealsList, Context context) {
         this.weekMealsList = weekMealsList;
         this.context  = context;
+        repository = new Repository(context);
     }
 
     @NonNull
