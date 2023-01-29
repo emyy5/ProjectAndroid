@@ -79,16 +79,16 @@
 
     </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/logoutBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_baseline_login_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.865"
-        app:layout_constraintStart_toEndOf="@+id/dailyInspiration"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/logoutBtn"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:src="@drawable/ic_baseline_login_24"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.865"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/dailyInspiration"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/dailyInspiration"

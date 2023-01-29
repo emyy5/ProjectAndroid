@@ -21,13 +21,18 @@ public interface FavproductDao {
     public Single<List<RandomMeal>> getAllProducts();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    public Completable insertProduct(RandomMeal product);
+    public Completable insertFavorite(RandomMeal randomMeal);
 
-    @Delete
-    public Completable deleteProduct(RandomMeal product);
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    public Completable insertAllFavorite(List<RandomMeal> randomMealList);
+
 
     @Query("DELETE FROM singleMeal")
-    public Completable removeAllFavorteMeals();
+    public Completable removeAllFavoriteMeals();
+    @Delete
+    public Completable deleteFavorite(RandomMeal randomMeal);
+
+
 }
 
 

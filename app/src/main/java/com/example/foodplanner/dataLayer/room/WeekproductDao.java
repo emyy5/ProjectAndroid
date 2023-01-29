@@ -28,10 +28,16 @@ public interface WeekproductDao {
         public Completable removeAllWeekMeals();
 
         @Insert(onConflict = OnConflictStrategy.IGNORE)
-        public Completable insertProduct(WeekMeals product);
+        public Completable insertAllWeekMeal(List<WeekMeals> product);
+
+        @Insert(onConflict = OnConflictStrategy.IGNORE)
+        public Completable insertweekmeal(WeekMeals product);
+
+
+
 
         @Delete
-        public Completable deleteProduct(WeekMeals product);
+        public Completable deleteFavorite(WeekMeals product);
     }
 
 

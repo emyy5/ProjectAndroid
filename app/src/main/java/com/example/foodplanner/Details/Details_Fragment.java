@@ -105,18 +105,8 @@ public class Details_Fragment extends Fragment {
 
                     @Override
                     public void onComplete() {
-                        Toast.makeText(getContext(), "Data added to favorite", Toast.LENGTH_SHORT).show();
-                        FirebaseFirestore db = FirebaseFirestore.getInstance();
-                        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                        if (firebaseAuth.getCurrentUser()!=null){
-                        db
-                               .collection("database")
-                               .document(firebaseAuth.getCurrentUser().getEmail())
-                               .collection("Favorite")
-                               .document(randomMeal.getIdMeal())
-                               .set(randomMeal);
-                        }
-                }
+                        Toast.makeText(getContext(), "Favorite saved", Toast.LENGTH_SHORT).show();
+                    }
 
                     @Override
                     public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
