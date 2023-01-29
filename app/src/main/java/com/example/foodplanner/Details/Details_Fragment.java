@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -16,9 +18,15 @@ import com.bumptech.glide.Glide;
 import com.example.foodplanner.Category.CategorySearchModel;
 import com.example.foodplanner.R;
 import com.example.foodplanner.RetroFit.APIinterface;
+import com.example.foodplanner.WeekMeal.ChooseWeekMealDialog;
+import com.example.foodplanner.dataLayer.Repository;
 import com.example.foodplanner.dataLayer.pojes.DetailMeal;
 import com.example.foodplanner.dataLayer.pojes.DetailRoot;
+import com.example.foodplanner.dataLayer.pojes.RandomMeal;
+import com.example.foodplanner.dataLayer.pojes.WeekMeals;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -27,36 +35,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 public class Details_Fragment extends Fragment {
 
     Long id;
-    ;
     ArrayList<DetailMeal> details;
-    List<CategorySearchModel> categoryMealDetails;
 
     // ui
-    VideoView mealVideo;
     ImageView detailImage;
     TextView detailName;
     TextView detailArea;
     TextView detailInstructions;
     YouTubePlayerView youTubePlayerView;
+    Button Fav_btn;
+    Button Plan_btn;
+
+    Repository repository;
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_details_, container, false);
     }
 
@@ -67,7 +72,10 @@ public class Details_Fragment extends Fragment {
         //  meal details
         id = Details_FragmentArgs.fromBundle(getArguments()).getId();
 
+        repository = new Repository(getContext());
 
+        Fav_btn = view.findViewById(R.id.Fav_btn);
+        Plan_btn = view.findViewById(R.id.Plan_btn);
         detailName = view.findViewById(R.id.detailName);
         detailArea = view.findViewById(R.id.detailArea);
         detailImage = view.findViewById(R.id.detailImage);
@@ -75,12 +83,67 @@ public class Details_Fragment extends Fragment {
         youTubePlayerView = view.findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
 
-
-//        detailName.setText(id.toString());
-//        detailName.setText(categorymealId.toString());
         getMealsDetails();
 
-//                repository.insertplan(detailMeal.convertToWeakMeal(detailMeal,"saturday"));
+        Fav_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RandomMeal randomMeal = new RandomMeal();
+                DetailMeal detailMeal = details.get(0);
+
+                randomMeal.setIdMeal(detailMeal.getIdMeal());
+                randomMeal.setStrMealThumb(detailMeal.getStrMealThumb());
+                randomMeal.setStrArea(detailMeal.getStrArea());
+                randomMeal.setStrInstructions(detailMeal.getStrInstructions());
+                randomMeal.setStrYoutube(detailMeal.getStrYoutube());
+
+                repository.insert(randomMeal, new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Toast.makeText(getContext(), "Data added to favorite", Toast.LENGTH_SHORT).show();
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                        if (firebaseAuth.getCurrentUser()!=null){
+                        db
+                               .collection("database")
+                               .document(firebaseAuth.getCurrentUser().getEmail())
+                               .collection("Favorite")
+                               .document(randomMeal.getIdMeal())
+                               .set(randomMeal);
+                        }
+                }
+
+                    @Override
+                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
+                    }
+                });
+            }
+        });
+
+
+        Plan_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                WeekMeals weekMeals = new WeekMeals();
+                DetailMeal detailMeal = details.get(0);
+
+                weekMeals.setIdMeal(detailMeal.getIdMeal());
+                weekMeals.setStrMealThumb(detailMeal.getStrMealThumb());
+                weekMeals.setStrArea(detailMeal.getStrArea());
+                weekMeals.setStrInstructions(detailMeal.getStrInstructions());
+                weekMeals.setStrYoutube(detailMeal.getStrYoutube());
+                ChooseWeekMealDialog dialog = new ChooseWeekMealDialog(getContext(),weekMeals);
+                dialog.create();
+                dialog.show();
+            }
+        });
+
     }
 
 
@@ -88,10 +151,7 @@ public class Details_Fragment extends Fragment {
 
         Retrofit apiClient = APIClient.getClient();
         APIinterface apiInterface = apiClient.create(APIinterface.class);
-
         Observable<DetailRoot> MealDetail = apiInterface.getByID(id);
-
-        Observable<DetailRoot> MealDetailObservable = apiInterface.getByID(id);
         MealDetail
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

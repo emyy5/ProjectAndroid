@@ -24,7 +24,9 @@ public interface WeekproductDao {
         public Single<List<WeekMeals>> getAllWeekMealsByDay(String day);
 
 
-        
+        @Query("DELETE FROM WeekMeals")
+        public Completable removeAllWeekMeals();
+
         @Insert(onConflict = OnConflictStrategy.IGNORE)
         public Completable insertProduct(WeekMeals product);
 

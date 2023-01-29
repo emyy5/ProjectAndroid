@@ -77,9 +77,19 @@
 
             <Button
                 android:id="@+id/Fav_btn"
+                android:layout_margin="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/addtoFav"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_margin="5dp"
+                android:id="@+id/Plan_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/addtoPlan"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 

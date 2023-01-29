@@ -54,6 +54,7 @@
     <string name="youtubevideo">Youtube Video</string>
     <string name="steps">Steps</string>
     <string name="addtoFav">Add To Favourite</string>
+    <string name="addtoPlan">Add to Plan</string>
 
 
 </resources>

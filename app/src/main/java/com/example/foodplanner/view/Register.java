@@ -2,6 +2,8 @@ package com.example.foodplanner.view;
 
 import android.app.ProgressDialog;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -29,6 +31,7 @@ public class Register extends Fragment {
 
     public static final String TAG = "RegisterActivity";
 
+    SharedPreferences sharedPreferences;
     TextView haveAccount;
     EditText inputRegisterEmail, inputRegisterpass, inputConfirmpass;
     Button btn_register;
@@ -38,15 +41,7 @@ public class Register extends Fragment {
     FirebaseUser firebaseUser;
     View view;
 
-    public Register() {
-        // Required empty public constructor
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +53,8 @@ public class Register extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        sharedPreferences = getContext().getSharedPreferences("key", Context.MODE_PRIVATE);
 
         haveAccount = view.findViewById(R.id.haveAccount);
         inputRegisterEmail = view.findViewById(R.id.inputRegisterEmail);
@@ -76,12 +73,7 @@ public class Register extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.logIn);
             }
         });
-        btn_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_register_to_Home);
-            }
-        });
+
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +104,10 @@ public class Register extends Fragment {
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     progressDialog.dismiss();
-                    Navigation.findNavController(view).navigate(R.id.action_register_to_Home);
+                    Navigation.findNavController(view).navigate(R.id.Home);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("isUser",true);
+                    editor.apply();
                     Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d(TAG, "PerforAuth: " + task.getException().toString());
@@ -135,12 +130,4 @@ public class Register extends Fragment {
 
     }
 
-    private void sendUserToNextActivity() {
-//        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(intent);
-
-        Navigation.findNavController(view).navigate(R.id.action_register_to_Home);
-
-    }
 }

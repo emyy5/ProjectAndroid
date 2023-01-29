@@ -1,5 +1,9 @@
 package com.example.foodplanner.Home;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,17 +52,6 @@ public class HomeFragment extends Fragment {
     Repository repository;
 
 
-    public HomeFragment() {
-    }
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        repository= new Repository(getContext());
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,11 +63,15 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        repository= new Repository(getContext());
+
         recyclerView = view.findViewById(R.id.recyclerView);
         randomMealName = view.findViewById(R.id.mealName);
         randomMealId = view.findViewById(R.id.mealId);
         randomMealImage = view.findViewById(R.id.image);
         randomCard=view.findViewById(R.id.RandomCard);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("key",Context.MODE_PRIVATE);
+
 
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -85,6 +82,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 firebaseAuth.signOut();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
                 Navigation.findNavController(view).navigate(R.id.logIn);
             }
         });

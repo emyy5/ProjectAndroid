@@ -1,10 +1,15 @@
 package com.example.foodplanner.WeekMeal;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -64,6 +69,24 @@ public class WeekMealFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("key", Context.MODE_PRIVATE);
+        boolean isUser = sharedPreferences.getBoolean("isUser",false);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Login Essential");
+        builder.setMessage("You should to login first plz ):");
+        builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Navigation.findNavController(view).navigate(R.id.Home);
+            }
+        });
+        builder.setCancelable(false);
+        builder.create();
+        if (!isUser) {
+            builder.show();
+        }
+
         repository = new Repository(requireContext());
         recylerViewSat = view.findViewById(R.id.recylerViewSat);
         recylerViewSat.setHasFixedSize(true);
