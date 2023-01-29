@@ -82,17 +82,17 @@ public class HomeFragment extends Fragment {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
-        ImageView logutBtn = view.findViewById(R.id.logoutBtn);
-        logutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                firebaseAuth.signOut();
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear();
-                editor.apply();
-                Navigation.findNavController(view).navigate(R.id.logIn);
-            }
-        });
+//        ImageView logutBtn = view.findViewById(R.id.logoutBtn);
+//        logutBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                firebaseAuth.signOut();
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.clear();
+//                editor.apply();
+//                Navigation.findNavController(view).navigate(R.id.logIn);
+//            }
+//        });
 
 
 

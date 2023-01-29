@@ -3,6 +3,8 @@ package com.example.foodplanner.dataLayer;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.example.foodplanner.dataLayer.pojes.RandomMeal;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -26,8 +29,7 @@ public class Repository {
 
     private Context context;
     private FavproductDao favproductDao;
-  private  WeekproductDao weekproductDao;
-    private Single<List<RandomMeal>> storeProduct;
+    private WeekproductDao weekproductDao;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore fdb;
 
@@ -47,6 +49,7 @@ public class Repository {
     }
 
 
+
     public Single<List<WeekMeals>> getAllWeekMeals(){
         return weekproductDao.getAllWeekMeals();
     }
@@ -58,13 +61,13 @@ public class Repository {
 
     public void insert (RandomMeal product, CompletableObserver completableObserver){
 
-        favproductDao.insertProduct(product)
+        favproductDao.insertFavorite(product)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(completableObserver);
     }
     public void insertplan (WeekMeals product,CompletableObserver completableObserver){
-       weekproductDao.insertProduct(product)
+       weekproductDao.insertweekmeal(product)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(completableObserver);
@@ -73,7 +76,7 @@ public class Repository {
 
     public void delete (RandomMeal product){
         favproductDao
-                .deleteProduct(product).subscribeOn(Schedulers.io())
+                .deleteFavorite(product).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new CompletableObserver() {
                     @Override
@@ -102,9 +105,28 @@ public class Repository {
 
     public void deleteplan (WeekMeals weekMeals,CompletableObserver completableObserver){
         weekproductDao
-                .deleteProduct(weekMeals).subscribeOn(Schedulers.io())
+                .deleteFavorite(weekMeals).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(completableObserver);
 
+    }
+
+
+
+    public Completable removeAllWeekMeals(){
+        return weekproductDao.removeAllWeekMeals();
+    }
+
+    public Completable insertAllWeekMeal(List<WeekMeals> weekMeals){
+        return weekproductDao.insertAllWeekMeal(weekMeals);
+    }
+
+    public Completable insertAllFavorite(List<RandomMeal> randomMealList){
+        return favproductDao.insertAllFavorite(randomMealList);
+    }
+
+
+    public Completable removeAllFavoriteMeals(){
+        return favproductDao.removeAllFavoriteMeals();
     }
 }
