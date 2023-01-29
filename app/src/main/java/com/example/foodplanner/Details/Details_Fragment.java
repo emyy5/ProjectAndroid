@@ -92,6 +92,7 @@ public class Details_Fragment extends Fragment {
                 DetailMeal detailMeal = details.get(0);
 
                 randomMeal.setIdMeal(detailMeal.getIdMeal());
+                randomMeal.setStrMeal(detailMeal.getStrMeal());
                 randomMeal.setStrMealThumb(detailMeal.getStrMealThumb());
                 randomMeal.setStrArea(detailMeal.getStrArea());
                 randomMeal.setStrInstructions(detailMeal.getStrInstructions());
@@ -124,6 +125,7 @@ public class Details_Fragment extends Fragment {
                 DetailMeal detailMeal = details.get(0);
 
                 weekMeals.setIdMeal(detailMeal.getIdMeal());
+                weekMeals.setStrMeal(detailMeal.getStrMeal());
                 weekMeals.setStrMealThumb(detailMeal.getStrMealThumb());
                 weekMeals.setStrArea(detailMeal.getStrArea());
                 weekMeals.setStrInstructions(detailMeal.getStrInstructions());

@@ -73,7 +73,8 @@ public class FavMealFragment extends Fragment {
 
                     @Override
                     public void onSuccess(@NonNull List<RandomMeal> products) {
-                        myAdapter.setProducts(products);
+                        List<RandomMeal> data = products;
+                        myAdapter.setProducts(data);
                         myAdapter.notifyDataSetChanged();
                     }
 

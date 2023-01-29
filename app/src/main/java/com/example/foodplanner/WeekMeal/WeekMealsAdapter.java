@@ -47,7 +47,7 @@ public class WeekMealsAdapter extends RecyclerView.Adapter<WeekMealsAdapter.MyVi
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         WeekMeals weekMeals = weekMealsList.get(position);
         holder.title.setText(weekMeals.getStrMeal());
-        holder.subtilte.setText(weekMeals.getStrCategory());
+        holder.subtilte.setText(weekMeals.getStrArea());
         String imageUrl = weekMeals.getStrMealThumb();
         Glide.with(context).load(imageUrl).into(holder.imagePlan);
 

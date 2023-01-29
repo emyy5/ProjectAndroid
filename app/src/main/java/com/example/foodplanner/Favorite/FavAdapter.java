@@ -64,7 +64,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         RandomMeal product=products.get(position);
         holder.titleTxtView.setText(products.get(position).getStrMeal());
-        holder.priceTxtView.setText(""+products.get(position).getIdMeal());
+        holder.priceTxtView.setText(""+products.get(position).getStrArea());
         Glide
                 .with(holder.img.getContext())
                 .load(product.getStrMealThumb())
