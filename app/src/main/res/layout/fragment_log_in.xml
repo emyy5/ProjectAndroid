@@ -16,8 +16,8 @@
         android:layout_height="match_parent"
         android:contentDescription="@string/scroll"
         android:fillViewport="true"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="-١٠٨dp">
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="26dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,9 +28,10 @@
                 android:id="@+id/textView"
                 android:layout_width="138dp"
                 android:layout_height="53dp"
-                android:layout_marginTop="320dp"
+                android:layout_marginTop="280dp"
                 android:layout_marginBottom="50dp"
                 android:fontFamily="sans-serif"
+                android:gravity="center"
                 android:text="Login"
                 android:textColor="@color/brawn"
                 android:textSize="40sp"
@@ -42,10 +43,23 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/guest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Login as Guest"
+                android:textColor="@color/brawn"
+                android:textSize="17dp"
+                app:layout_constraintBottom_toTopOf="@+id/createNewaccount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+            <TextView
                 android:id="@+id/createNewaccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:padding="8dp"
                 android:text="Create new Account?"
                 android:textColor="@color/brawn"
@@ -53,7 +67,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+                tools:layout_editor_absoluteY="609dp" />
 
             <EditText
                 android:id="@+id/inputEmailLogin"
@@ -119,30 +133,29 @@
                 app:layout_constraintTop_toBottomOf="@+id/inputEmailLogin" />
 
 
-
-
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:gravity="center"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createNewaccount"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/createNewaccount">
+
                 <ImageView
                     android:id="@+id/img_facebook"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     app:srcCompat="@drawable/facebook" />
+
                 <ImageView
-                    android:layout_marginStart="20dp"
                     android:id="@+id/img_google"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    app:srcCompat="@drawable/google_logo"/>
+                    android:layout_marginStart="20dp"
+                    app:srcCompat="@drawable/google_logo" />
             </LinearLayout>
 
 

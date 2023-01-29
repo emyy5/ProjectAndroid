@@ -1,9 +1,11 @@
-package com.example.foodplanner.view;
+package com.example.foodplanner.Login;
 
 import static android.content.ContentValues.TAG;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,6 +45,7 @@ public class LoginFragment extends Fragment {
     GoogleSignInClient googleSignInClient;
     ProgressDialog progressDialog;
     View view;
+    SharedPreferences sharedPreferences;
 
 
     TextView createNewaccount;
@@ -51,6 +54,7 @@ public class LoginFragment extends Fragment {
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ImageView img_google;
     ImageView img_facebook;
+    TextView guest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,6 +68,10 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
+        sharedPreferences = getContext().getSharedPreferences("key", Context.MODE_PRIVATE);
+
+        guest = view.findViewById(R.id.guest);
 
         btnlogin = view.findViewById(R.id.btn_login);
         inputEmailLogin = view.findViewById(R.id.inputEmailLogin);
@@ -90,7 +98,15 @@ public class LoginFragment extends Fragment {
 
 
 
-
+        guest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isUser",false);
+                editor.apply();
+                Navigation.findNavController(view).navigate(R.id.Home);
+            }
+        });
 
         this.view = view ;
 
@@ -146,6 +162,9 @@ public class LoginFragment extends Fragment {
                         progressDialog.dismiss();
 
                         Toast.makeText(requireContext(), "Login Sucessful", Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("isUser",true);
+                        editor.apply();
                         Navigation.findNavController(view).navigate(R.id.Home);
                     }
                     else{
@@ -160,10 +179,6 @@ public class LoginFragment extends Fragment {
     }
 
 
-
-    private void updateUI(FirebaseUser user) {
-        Navigation.findNavController(view).navigate(R.id.Home);
-    }
 
 
     @Override
@@ -191,13 +206,15 @@ public class LoginFragment extends Fragment {
                 if (task.isSuccessful()) {
                     // Log.d(TAG, "signInWithCredential: success");
                     progressDialog.dismiss();
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                    updateUI(user);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("isUser",true);
+                    editor.apply();
+                    Navigation.findNavController(view).navigate(R.id.Home);
+
                 } else {
                     //finish();
                     progressDialog.dismiss();
                     Toast.makeText(requireContext(), "" + task.getException(), Toast.LENGTH_SHORT).show();
-                    updateUI(null);
 
 
                 }

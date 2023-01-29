@@ -25,6 +25,9 @@ public interface FavproductDao {
 
     @Delete
     public Completable deleteProduct(RandomMeal product);
+
+    @Query("DELETE FROM singleMeal")
+    public Completable removeAllFavorteMeals();
 }
 
 

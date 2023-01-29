@@ -1,6 +1,9 @@
 package com.example.foodplanner.view;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.View;
 
 import androidx.annotation.NonNull;
