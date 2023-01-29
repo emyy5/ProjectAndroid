@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 backupData();
                 return true;
             case R.id.restore:
+                restoreData();
                 return true;
             case R.id.logout:
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -173,6 +174,137 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+    private void restoreData() {
+        repository.removeAllWeekMeals().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                        List<WeekMeals> weekMealsList = new ArrayList<>();
+                        if (firebaseAuth.getCurrentUser()!=null){
+                            firestore
+                                    .collection("database")
+                                    .document(firebaseAuth.getCurrentUser().getEmail())
+                                    .collection("WeekMeals")
+                                    .get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            for (DocumentSnapshot documentSnapshot:queryDocumentSnapshots){
+                                                weekMealsList.add(documentSnapshot.toObject(WeekMeals.class));
+                                            }
+
+                                            repository.insertAllWeekMeal(weekMealsList)
+                                                    .subscribeOn(Schedulers.io())
+                                                    .observeOn(AndroidSchedulers.mainThread())
+                                                    .subscribe(new CompletableObserver() {
+                                                        @Override
+                                                        public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onComplete() {
+                                                            Toast.makeText(getApplicationContext(), "Data of Week Meal Restored", Toast.LENGTH_SHORT).show();
+
+                                                        }
+
+                                                        @Override
+                                                        public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                                                            Toast.makeText(getApplicationContext(), "Data of Week Meal failed to restored", Toast.LENGTH_SHORT).show();
+
+                                                        }
+                                                    });
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@androidx.annotation.NonNull Exception e) {
+                                            Toast.makeText(getApplicationContext(), "Data of Week Meal failed to restored", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+                        }
+
+
+
+                    }
+
+                    @Override
+                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
+                    }
+                });
+        repository.removeAllFavoriteMeals()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+                        Log.d(TAG, "onSubscribe: ");
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                        List<RandomMeal> randomMealList = new ArrayList<>();
+                        if (firebaseAuth.getCurrentUser()!=null){
+                            firestore
+                                    .collection("database")
+                                    .document(firebaseAuth.getCurrentUser().getEmail())
+                                    .collection("Favorite")
+                                    .get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            for (DocumentSnapshot documentSnapshot:queryDocumentSnapshots){
+                                                randomMealList.add(documentSnapshot.toObject(RandomMeal.class));
+                                            }
+                                            repository.insertAllFavorite(randomMealList).subscribeOn(Schedulers.io())
+                                                    .observeOn(AndroidSchedulers.mainThread())
+                                                    .subscribe(new CompletableObserver() {
+                                                        @Override
+                                                        public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+                                                            Log.d(TAG, "onSubscribe: ");
+                                                        }
+
+                                                        @Override
+                                                        public void onComplete() {
+                                                            Toast.makeText(getApplicationContext(), "Data of favorite Restore", Toast.LENGTH_SHORT).show();
+                                                        }
+
+                                                        @Override
+                                                        public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                                                            Toast.makeText(getApplicationContext(), "Data of favorite is fail", Toast.LENGTH_SHORT).show();
+
+                                                        }
+                                                    });
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@androidx.annotation.NonNull Exception e) {
+                                            Toast.makeText(getApplicationContext(), "Data of favorite is fail", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                        Log.d(TAG, "onError: ");
+                    }
+
+                });
+}
+
+
+
 
 
 }
