@@ -1,10 +1,9 @@
-package com.example.foodplanner.view;
+package com.example.foodplanner.Home;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,18 +15,16 @@ import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 import com.example.foodplanner.dataLayer.Repository;
 import com.example.foodplanner.dataLayer.pojes.RandomMeal;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
-public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHolder>  {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>  {
 
     Repository repository;
     private ArrayList<RandomMeal> meals;
     long id ;
 
-    public RandomAdapter(ArrayList<RandomMeal> meals,Context context) {
+    public HomeAdapter(ArrayList<RandomMeal> meals, Context context) {
         this.meals = meals;
         repository= new Repository(context);
     }
@@ -46,7 +43,6 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
 
 
         RandomMeal meal = meals.get(position);
-        holder.meal_id.setText(meal.getIdMeal().toString());
         holder.meal_name.setText(meal.getStrMeal());
 
         Glide.with(holder.meal_image.getContext()).load(meal.getStrMealThumb()).into(holder.meal_image);
@@ -75,7 +71,7 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
         return meals.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
         public ImageView meal_image;
@@ -86,10 +82,17 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.MyViewHold
             super(itemView);
 
            meal_image = itemView.findViewById(R.id.image);
-           meal_name=itemView.findViewById(R.id.mealName);
-           meal_id= itemView.findViewById(R.id.mealId);
+           meal_name=itemView.findViewById(R.id.mealId);
+            itemView.setOnClickListener(this);
 
         }
+        @Override
+        public void onClick(View v) {
+            HomeFragmentDirections.ActionHomeToDetailsFragment action = HomeFragmentDirections.actionHomeToDetailsFragment();
+            action.setId(Long.parseLong(meals.get(this.getAdapterPosition()).getIdMeal()));
+            Navigation.findNavController(v).navigate(action);
+        }
+
 
     }
 }

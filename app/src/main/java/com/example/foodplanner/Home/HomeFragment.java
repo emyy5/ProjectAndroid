@@ -5,28 +5,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.WeekMeal.ChooseWeekMealDialog;
 import com.example.foodplanner.dataLayer.Repository;
 import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 import com.example.foodplanner.dataLayer.pojes.RandomRoot;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
 import com.example.foodplanner.dataLayer.retrofitApi.APIinterface;
-import com.example.foodplanner.view.RandomAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -40,7 +35,7 @@ import retrofit2.Retrofit;
 public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
-    RandomAdapter adapter;
+    HomeAdapter adapter;
     CardView randomCard;
     String mealId;
 
@@ -132,7 +127,7 @@ public class HomeFragment extends Fragment {
                             recyclerView.setHasFixedSize(true);
 
 
-                            adapter = new RandomAdapter(meals,getContext());
+                            adapter = new HomeAdapter(meals,getContext());
 
                             recyclerView.setAdapter(adapter);
 
@@ -149,6 +144,7 @@ public class HomeFragment extends Fragment {
                 HomeFragmentDirections.ActionHomeToDetailsFragment action = HomeFragmentDirections.actionHomeToDetailsFragment();
                 action.setId(Long.parseLong(randomMealId.getText().toString()));
                 Navigation.findNavController(view).navigate(action);
+
 
             }
         });
