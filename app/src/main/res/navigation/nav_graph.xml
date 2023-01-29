@@ -21,13 +21,11 @@
         android:label="LogIn"
         tools:layout="@layout/fragment_log_in">
         <action
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/logIn"
-            android:id="@+id/action_logIn_to_Home"
-            app:destination="@id/Home" />
-        <action
             android:id="@+id/action_logIn_to_register"
             app:destination="@id/register" />
+        <action
+            android:id="@+id/action_logIn_to_onBoarding"
+            app:destination="@id/onBoarding" />
 
     </fragment>
     <fragment
@@ -45,10 +43,8 @@
         android:label="Register"
         tools:layout="@layout/fragment_register">
         <action
-            app:popUpTo="@id/register"
-            app:popUpToInclusive="true"
-            android:id="@+id/action_register_to_Home"
-            app:destination="@id/Home" />
+            android:id="@+id/action_register_to_onBoarding"
+            app:destination="@id/onBoarding" />
 
     </fragment>
 
@@ -149,6 +145,14 @@
         <action
             android:id="@+id/action_countrySearch_to_details_Fragment"
             app:destination="@id/details_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoarding"
+        android:name="com.example.foodplanner.Utils.onBoarding"
+        android:label="onBoarding" >
+        <action
+            android:id="@+id/action_onBoarding_to_Home"
+            app:destination="@id/Home" />
     </fragment>
 
 </navigation>
