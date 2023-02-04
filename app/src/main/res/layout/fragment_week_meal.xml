@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".WeekMeal.WeekMealFragment">
+        tools:context=".features.WeekMeal.WeekMealFragment">
 
 
             <TextView

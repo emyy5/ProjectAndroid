@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/home"
-    tools:context=".Ingredient.Ingredient_Fragment" >
+    tools:context=".features.Ingredient.Ingredient_Fragment" >
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ingredient_search"

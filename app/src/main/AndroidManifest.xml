@@ -22,14 +22,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.SplashScreenFragment$OnBoardingActivity"
+            android:name=".features.Splash.SplashScreenFragment$OnBoardingActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.MainActivity"
+            android:name=".features.MainActivity"
             android:exported="true">
 
 
