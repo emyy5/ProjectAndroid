@@ -1,4 +1,4 @@
-package com.example.foodplanner.features.Category;
+package com.example.foodplanner.features.Category.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +11,15 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.Category.Category_FragmentDirections;
 import com.example.foodplanner.R;
+import com.example.foodplanner.features.Category.CategoriesModel;
+import com.example.foodplanner.features.Category.Category_FragmentDirections;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
 
     private List<CategoriesModel> categories;
-    String categoryname;
 
 
     public CategoryAdapter(List<CategoriesModel> categories) {

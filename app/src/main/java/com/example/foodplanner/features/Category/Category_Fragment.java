@@ -14,17 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.foodplanner.dataLayer.RetroFit.APIinterface;
+import com.example.foodplanner.dataLayer.NetworkCallBacks;
+import com.example.foodplanner.dataLayer.Repository;
 import com.example.foodplanner.R;
-import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
+import com.example.foodplanner.features.Category.adapter.CategoryAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 
@@ -62,37 +60,19 @@ public class Category_Fragment extends Fragment {
         textInputEditText=view.findViewById(R.id.categoryinput);
 
 
-        Retrofit apiClient2 = APIClient.getClient();
 
-        APIinterface apiInterface2 = apiClient2.create(APIinterface.class);
-
-        Observable categoryList = apiInterface2.getCategories();
-        Observable<CategoryRoot> categoryListObservable = apiInterface2.getCategories();
-        categoryListObservable.
-                subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> {
-
-                            categories = response.getCategories();
-
-                            recyclerView.setHasFixedSize(true);
-
-                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
-
-                            recyclerView.setLayoutManager(linearLayoutManager);
-
-                            linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-
-                            categoryAdapter = new CategoryAdapter(categories);
-
-                            recyclerView.setAdapter(categoryAdapter);
-
-
-                        }
-                        , error -> {
-
-                            error.getMessage();
-                        });
+        // TODO migrate this code to repository
+        new Repository(getContext()).getCategoryListApi(new NetworkCallBacks<List<CategoriesModel>>() {
+            @Override
+            public void responseData(List<CategoriesModel> data) {
+                recyclerView.setHasFixedSize(true);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
+                recyclerView.setLayoutManager(linearLayoutManager);
+                linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+                categoryAdapter = new CategoryAdapter(categories);
+                recyclerView.setAdapter(categoryAdapter);
+            }
+        });
 
         textInputEditText.addTextChangedListener(new TextWatcher() {
             @Override

@@ -14,9 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.Details.Details_FragmentArgs;
 import com.example.foodplanner.R;
-import com.example.foodplanner.dataLayer.RetroFit.APIinterface;
+import com.example.foodplanner.dataLayer.retrofitApi.APIinterface;
 import com.example.foodplanner.features.WeekMeal.ChooseWeekMealDialog;
 import com.example.foodplanner.dataLayer.Repository;
 import com.example.foodplanner.dataLayer.pojes.DetailMeal;
@@ -137,9 +136,9 @@ public class Details_Fragment extends Fragment {
 
     public void getMealsDetails() {
 
-        Retrofit apiClient = APIClient.getClient();
-        APIinterface apiInterface = apiClient.create(APIinterface.class);
-        Observable<DetailRoot> MealDetail = apiInterface.getByID(id);
+        // TODO migrate this code to repository
+
+        Observable<DetailRoot> MealDetail = APIClient.apiInterface.getByID(id);
         MealDetail
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.foodplanner.R;
-import com.example.foodplanner.dataLayer.RetroFit.APIinterface;
+import com.example.foodplanner.dataLayer.retrofitApi.APIinterface;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -29,13 +29,11 @@ import retrofit2.Retrofit;
 
 public class Ingredient_Fragment extends Fragment {
 
-    private static Retrofit retrofit;
 
     List<IngredientModel> ingredients;
     TextInputEditText search;
     IngredientAdapter ingredientAdapter;
     RecyclerView recyclerView;
-
 
 
 
@@ -65,13 +63,10 @@ public class Ingredient_Fragment extends Fragment {
         recyclerView = view.findViewById(R.id.ingredientRecycler);
         search=view.findViewById(R.id.ingredient_text);
 
-        Retrofit apiClient6= APIClient.getClient();
 
-        APIinterface apiInterface6 = apiClient6.create(APIinterface.class);
 
-        Observable Ingredients = apiInterface6.getIngredients("list");
-
-        Observable<IngredientRoot> ingredientObservable  = apiInterface6.getIngredients("list");
+// TODO migrate this code to repository
+        Observable<IngredientRoot> ingredientObservable  = APIClient.apiInterface.getIngredients("list");
 
         ingredientObservable.
                 subscribeOn(Schedulers.io())

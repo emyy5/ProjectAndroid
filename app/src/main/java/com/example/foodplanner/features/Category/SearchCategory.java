@@ -14,10 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.foodplanner.Category.SearchCategoryArgs;
-import com.example.foodplanner.dataLayer.RetroFit.APIinterface;
 import com.example.foodplanner.R;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
+import com.example.foodplanner.features.Category.adapter.CategorySearchAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
@@ -63,25 +62,13 @@ public class SearchCategory extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         categoryname= SearchCategoryArgs.fromBundle(getArguments()).getCategoryname();
-
         recyclerView = view.findViewById(R.id.categorySearchRecycler);
         textInputEditText=view.findViewById(R.id.mealSearchInput2);
 
-//        testcountry=view.findViewById(R.id.testcountry);
 
-        // testcountry.setText(countryname);
-
-
-
-        Retrofit apiClient9 = APIClient.getClient();
-
-        APIinterface apiInterface9 = apiClient9.create(APIinterface.class);
-
-        Observable mealByCategory = apiInterface9.getMealsByCategory(categoryname);
-
-        Observable<CategorySearchRoot> mealByCategoryObservable = apiInterface9.getMealsByCategory(categoryname);
+        // TODO migrate this code to repository
+        Observable<CategorySearchRoot> mealByCategoryObservable =  APIClient.apiInterface.getMealsByCategory(categoryname);
         mealByCategoryObservable.
                 subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

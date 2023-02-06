@@ -14,10 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.foodplanner.Category.SearchCategoryArgs;
-import com.example.foodplanner.Ingredient.IngredientSearchArgs;
 import com.example.foodplanner.R;
-import com.example.foodplanner.dataLayer.RetroFit.APIinterface;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -64,39 +61,21 @@ public class IngredientSearch extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         ingredientname = IngredientSearchArgs.fromBundle(getArguments()).getIngredientname();
-
-
 
         recyclerView = view.findViewById(R.id.ingredientSearchRecycler);
         textInputEditText=view.findViewById(R.id.ingredientinput);
 
-    //    test=view.findViewById(R.id.ingredientTest);
-//        test.setText(ingredientId.toString());
-
-
-        Retrofit apiClient8 = APIClient.getClient();
-
-        APIinterface apiInterface8 = apiClient8.create(APIinterface.class);
-
-        Observable ingredientMeals = apiInterface8.getIngredientMeals(ingredientname);
-        Observable<IngredientSearchRoot> ingredientMealsObservable = apiInterface8.getIngredientMeals(ingredientname);
+        Observable<IngredientSearchRoot> ingredientMealsObservable = APIClient.apiInterface.getIngredientMeals(ingredientname);
         ingredientMealsObservable.
                 subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
 
-               //     test.setText(response.getMeals().get(0).getStrMeal());
-
                             meals = response.getMeals();
-
                             recyclerView.setHasFixedSize(true);
-
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
-
                             recyclerView.setLayoutManager(linearLayoutManager);
-
                             linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
 
                             ingredientSearchAdapter = new IngredientSearchAdapter(meals);

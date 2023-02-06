@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.dataLayer.RetroFit.APIinterface;
+import com.example.foodplanner.dataLayer.retrofitApi.APIinterface;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -61,14 +61,10 @@ public class Country_Fragment extends Fragment {
         recyclerView = view.findViewById(R.id.countryRecycler);
         search=view.findViewById(R.id.countryinput);
 
-        Retrofit apiClient4 = APIClient.getClient();
 
-        APIinterface apiInterface4 = apiClient4.create(APIinterface.class);
 
-        Observable Countries = apiInterface4.getCountry("list");
-
-        Observable<CountryRoot> CountriesObservable  = apiInterface4.getCountry("list");
-
+        // TODO migrate this code to repository
+        Observable<CountryRoot> CountriesObservable  = APIClient.apiInterface.getCountry("list");
         CountriesObservable.
                 subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

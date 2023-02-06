@@ -1,5 +1,11 @@
 package com.example.foodplanner.dataLayer.retrofitApi;
 
+import com.example.foodplanner.features.Category.CategoryRoot;
+import com.example.foodplanner.features.Category.CategorySearchRoot;
+import com.example.foodplanner.features.Country.CountryRoot;
+import com.example.foodplanner.features.Country.CountrySearchRoot;
+import com.example.foodplanner.features.Ingredient.IngredientRoot;
+import com.example.foodplanner.features.Ingredient.IngredientSearchRoot;
 import com.example.foodplanner.dataLayer.pojes.DetailRoot;
 import com.example.foodplanner.dataLayer.pojes.RandomRoot;
 
@@ -18,5 +24,29 @@ public interface APIinterface {
 
     @GET("lookup.php")
     Observable<DetailRoot> getByID(@Query("i")String id);
+
+    @GET("lookup.php")
+    Observable<DetailRoot> getByID(@Query("i")Long id);
+
+
+    @GET("categories.php")
+    Observable<CategoryRoot> getCategories();
+
+    @GET("filter.php")
+    Observable<CategorySearchRoot> getMealsByCategory(@Query("c")String categoryname);
+
+    @GET("list.php")
+    Observable<CountryRoot> getCountry(@Query("a") String list);
+
+
+    @GET("filter.php")
+    Observable<CountrySearchRoot> getMealsByCountry(@Query("a") String countryname);
+
+    @GET("list.php")
+    Observable<IngredientRoot> getIngredients(@Query("i") String list);
+
+    @GET("filter.php")
+    Observable<IngredientSearchRoot>getIngredientMeals(@Query("i") String ingredientname);
+
 
 }

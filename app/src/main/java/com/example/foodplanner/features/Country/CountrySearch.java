@@ -13,9 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodplanner.Country.CountrySearchArgs;
 import com.example.foodplanner.R;
-import com.example.foodplanner.dataLayer.RetroFit.APIinterface;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -51,22 +49,22 @@ public class CountrySearch extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
 
-        Retrofit apiClient5 = APIClient.getClient();
 
-        APIinterface apiInterface5 = apiClient5.create(APIinterface.class);
-
+        // TODO migrate this code to repository
         countryname = CountrySearchArgs.fromBundle(getArguments()).getCountryname();
-        Observable<CountrySearchRoot> mealByCountryObservable = apiInterface5.getMealsByCountry(countryname);
+        Observable<CountrySearchRoot> mealByCountryObservable = APIClient.apiInterface.getMealsByCountry(countryname);
         mealByCountryObservable.
                 subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
                     meals = response.getMeals();
                     countrySearchAdapter = new CountrySearchAdapter(meals);
+
                     recyclerView.setAdapter(countrySearchAdapter);
                 }, error -> {
                     error.getMessage();
                 });
+
         textInputEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

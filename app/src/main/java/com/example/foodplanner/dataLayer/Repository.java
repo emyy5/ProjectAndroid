@@ -3,15 +3,14 @@ package com.example.foodplanner.dataLayer;
 import android.content.Context;
 import android.widget.Toast;
 
-import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
-import androidx.room.Query;
-
 import com.example.foodplanner.dataLayer.pojes.RandomMeal;
 import com.example.foodplanner.dataLayer.pojes.WeekMeals;
+import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
 import com.example.foodplanner.dataLayer.room.FavproductDao;
 import com.example.foodplanner.dataLayer.room.MealDatabase;
 import com.example.foodplanner.dataLayer.room.WeekproductDao;
+import com.example.foodplanner.features.Category.CategoriesModel;
+import com.example.foodplanner.features.Category.CategoryRoot;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -21,6 +20,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.CompletableObserver;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -44,6 +44,21 @@ public class Repository {
         fdb  = FirebaseFirestore.getInstance();
     }
 
+    public void getCategoryListApi(NetworkCallBacks<List<CategoriesModel>> networkCallBacks){
+        Observable<CategoryRoot> categoryListObservable = APIClient.apiInterface.getCategories();
+        categoryListObservable.
+                subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+
+                            networkCallBacks.responseData(response.getCategories());
+
+                        }
+                        , error -> {
+
+                            error.getMessage();
+                        });
+    }
     public Single<List<RandomMeal>> getStoreProduct() {
         return favproductDao.getAllProducts();
     }

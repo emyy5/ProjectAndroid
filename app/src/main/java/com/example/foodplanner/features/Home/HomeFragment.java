@@ -18,7 +18,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.Home.HomeFragmentDirections;
 import com.example.foodplanner.R;
 import com.example.foodplanner.dataLayer.Repository;
 import com.example.foodplanner.dataLayer.pojes.RandomMeal;
@@ -26,6 +25,7 @@ import com.example.foodplanner.dataLayer.pojes.RandomRoot;
 import com.example.foodplanner.dataLayer.retrofitApi.APIClient;
 import com.example.foodplanner.dataLayer.retrofitApi.APIinterface;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.protobuf.Api;
 
 import java.util.ArrayList;
 
@@ -76,25 +76,9 @@ public class HomeFragment extends Fragment {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
-//        ImageView logutBtn = view.findViewById(R.id.logoutBtn);
-//        logutBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                firebaseAuth.signOut();
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                editor.clear();
-//                editor.apply();
-//                Navigation.findNavController(view).navigate(R.id.logIn);
-//            }
-//        });
 
-
-
-        Retrofit apiClient = APIClient.getClient();
-
-        APIinterface apiInterface = apiClient.create(APIinterface.class);
-
-        Observable<RandomRoot> RandomMealObservablre = apiInterface.getRandomMeals();
+        // TODO migrate this code to repository
+        Observable<RandomRoot> RandomMealObservablre = APIClient.apiInterface.getRandomMeals();
         RandomMealObservablre
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -114,7 +98,8 @@ public class HomeFragment extends Fragment {
                 });
 
 
-        Observable<RandomRoot> EgyptianMealsObservable = apiInterface.getEgyptianMeals("Egyptian");
+        // TODO migrate this code to repository
+        Observable<RandomRoot> EgyptianMealsObservable = APIClient.apiInterface.getEgyptianMeals("Egyptian");
         EgyptianMealsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

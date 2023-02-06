@@ -29,4 +29,7 @@ public class APIClient {
 
         }
         return retrofit;
-    }}
+    }
+
+    public static APIinterface apiInterface = getClient().create(APIinterface.class);
+}
